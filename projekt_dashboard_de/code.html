@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MidnightShader | Projekt-Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-dim": "#d73357",
+              "on-secondary": "#004d57",
+              "on-secondary-fixed": "#003a42",
+              "secondary-fixed": "#26e6ff",
+              "primary-fixed-dim": "#9c7eff",
+              "on-tertiary-container": "#100003",
+              "surface": "#0e0e0e",
+              "on-primary-fixed": "#000000",
+              "surface-container-low": "#131313",
+              "on-tertiary": "#48001c",
+              "on-primary-container": "#280072",
+              "on-primary-fixed-variant": "#32008a",
+              "tertiary-fixed": "#ff8fa9",
+              "tertiary": "#ff6c95",
+              "secondary": "#00e3fd",
+              "inverse-primary": "#6834eb",
+              "surface-tint": "#b6a0ff",
+              "primary-fixed": "#a98fff",
+              "error": "#ff6e84",
+              "primary": "#b6a0ff",
+              "on-secondary-fixed-variant": "#005964",
+              "on-secondary-container": "#e8fbff",
+              "surface-container-highest": "#262626",
+              "inverse-on-surface": "#565555",
+              "on-primary": "#340090",
+              "surface-bright": "#2c2c2c",
+              "inverse-surface": "#fcf9f8",
+              "tertiary-dim": "#ff6c95",
+              "surface-container-lowest": "#000000",
+              "error-container": "#a70138",
+              "surface-dim": "#0e0e0e",
+              "on-background": "#ffffff",
+              "on-error-container": "#ffb2b9",
+              "secondary-fixed-dim": "#00d7f0",
+              "secondary-container": "#006875",
+              "surface-container-high": "#20201f",
+              "primary-dim": "#7e51ff",
+              "on-error": "#490013",
+              "on-surface": "#ffffff",
+              "primary-container": "#a98fff",
+              "tertiary-fixed-dim": "#ff769b",
+              "on-tertiary-fixed": "#380014",
+              "tertiary-container": "#fd3e80",
+              "on-tertiary-fixed-variant": "#770033",
+              "surface-container": "#1a1a1a",
+              "background": "#0e0e0e",
+              "outline-variant": "#484847",
+              "on-surface-variant": "#adaaaa",
+              "secondary-dim": "#00d4ec",
+              "surface-variant": "#262626",
+              "outline": "#767575"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="midnight-architect bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 z-50 flex justify-between items-center w-full px-6 py-3 bg-[#0e0e0e] border-none">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#b6a0ff] font-['Space_Grotesk']">MidnightShader</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#b6a0ff] font-bold font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Datei</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Bearbeiten</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Ansicht</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Ressourcen</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-[#131313] px-3 py-1.5 rounded-lg border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder-outline" placeholder="Projekte suchen..." type="text"/>
+</div>
+<div class="flex gap-2 items-center">
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors"><span class="material-symbols-outlined" data-icon="add">add</span></button>
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors"><span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span></button>
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors"><span class="material-symbols-outlined" data-icon="settings">settings</span></button>
+</div>
+<div class="flex items-center gap-2 ml-2">
+<button class="bg-outline-variant/20 px-4 py-1.5 rounded text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-bright transition-all">Speichern</button>
+<button class="bg-gradient-to-r from-primary to-primary-container px-4 py-1.5 rounded text-xs font-label font-bold uppercase tracking-widest text-on-primary shadow-lg shadow-primary/10 hover:brightness-110 transition-all">Exportieren</button>
+<img alt="Benutzerprofil" class="w-8 h-8 rounded-full border border-primary/20 ml-2" data-alt="close-up portrait of a digital artist with colorful studio lighting reflection on glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKbStIjsSaGGP6ToN8Lof4-j7aJtw9iB7k5BMFLe_YqaRRW7h-HxzjsIfneClJHa80a2szruE9n6jbsUN1C3_3VQ-tIIx54qpXy3DjXbKdtvNmdw2u21yv2o7EEVPH1cY4iecKWRgidAqdPJTNVxvqMs9tsXj52gh-MQn17e85RWloUywPmylkKNPiwJNBvPpGaKVrhWPtrEk1KkjpM62jWVzDsIlJm5U0W2K4ZYzqMNi8mNZthAnUzywerAW9hblBVhbcb1GsSsEd"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 pt-16 bg-[#131313] w-64 border-none z-40 hidden md:flex">
+<div class="px-6 py-6">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-surface-container-highest rounded-lg flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="account_tree">account_tree</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-[#b6a0ff] font-['Space_Grotesk'] leading-none">Shader-Graph</h2>
+<p class="text-[10px] uppercase tracking-widest text-gray-500 mt-1">v2.4.0-alpha</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 text-[#b6a0ff] bg-[#20201f] border-r-2 border-[#b6a0ff] font-['Manrope'] text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span>Knoten</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white font-['Manrope'] text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span>Parameter</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white font-['Manrope'] text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="texture">texture</span>
+<span>Texturen</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white font-['Manrope'] text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span>Ebenen</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white font-['Manrope'] text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Verlauf</span>
+</a>
+</nav>
+<div class="p-6 space-y-4">
+<button class="w-full flex items-center justify-center gap-2 bg-primary/10 border border-primary/20 text-primary py-2.5 rounded-lg text-sm font-label font-bold hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+            Knoten hinzufügen
+        </button>
+<div class="pt-4 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-3 py-2 text-gray-500 hover:text-white transition-colors text-sm font-['Manrope']" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Hilfe</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-500 hover:text-white transition-colors text-sm font-['Manrope']" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Dokumentation</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-20 pb-12 px-6 lg:px-12">
+<!-- Hero: Create New & Recent Projects -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24">
+<div class="lg:col-span-4 flex flex-col justify-center">
+<h3 class="font-label text-[0.7rem] uppercase tracking-[0.3em] text-secondary mb-4">Arbeitsbereich</h3>
+<h1 class="font-headline text-5xl md:text-6xl font-bold tracking-tighter text-on-surface mb-6">Obsidian<br/><span class="text-primary">Flux</span></h1>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed mb-8 max-w-sm">
+                Entwerfen Sie komplexe prozedurale Shader mit der Präzision eines Architekten und der Fluidität einer Flüssigkeit.
+            </p>
+<button class="group w-fit flex items-center gap-4 bg-gradient-to-br from-primary to-primary-dim p-1 rounded-xl shadow-2xl shadow-primary/20 hover:scale-105 transition-transform duration-300">
+<div class="bg-surface rounded-lg px-8 py-4 flex items-center gap-4 text-on-surface group-hover:bg-transparent group-hover:text-on-primary transition-colors">
+<span class="font-headline text-xl font-bold">Neues Projekt</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+</div>
+<div class="lg:col-span-8">
+<div class="flex justify-between items-end mb-6">
+<h2 class="font-headline text-2xl font-bold">Aktuelle Projekte</h2>
+<a class="text-primary font-label text-xs uppercase tracking-widest hover:underline" href="#">Alle ansehen</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Project Card 1 -->
+<div class="group relative aspect-[16/10] bg-surface-container-low rounded-xl overflow-hidden cursor-pointer">
+<img alt="Neon Nebula Shader" class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="abstract procedural texture of glowing purple and cyan gas clouds swirling in dark space with digital noise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRzCpx0Hhqe6dqn1zmwFp2mXvhasBCDZjCFEzT-y-DPL_t0uon19yMnhIs497tmTpksFeIM9P9g4QMR2JX-sxwJhiav_DC6RST-SWdDClU6G61bmLH-bPKErkIZbLtFvLbrvhR4SFsD6DZP1hhznqoeloiiNLH5wacYZgdc6m09P9CmbFeUueWNze11wTCLg_Gfs_PmKPfsVs4np6EqCxLDDfkfJB5US7oIbG4NVJ4__HFwd4O6NuyU1yLjDLC8BTt8-liV5XHIz9w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label text-[10px] text-secondary uppercase tracking-widest mb-1 block">Aktive Entwicklung</span>
+<h4 class="font-headline text-xl font-bold">Neon_Nebula_v4</h4>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group relative aspect-[16/10] bg-surface-container-low rounded-xl overflow-hidden cursor-pointer">
+<img alt="Vanta Flow Shader" class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="microscopic view of liquid metal ripples with deep black reflections and subtle iridescent highlights on edges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvcbvcYZ76XBrN8_4ydW6q0ia7jGlmofxDdoLBOHZcRq6gjcKjHI8l-kX9vUrY-xgMPBlLXj7p0oncTqFu62YyZyH3wDOvm1haRu6J-diSQAlleyzQqyiNhJfI9NVnADOqjGLX5znGReVpSaTPHeGW0VjKJdXURCpXD8TyUwjE3LaN5dB3VIz9FZ6t7OxJdS0AaYA-tpH9urCwvRwt5bz_enW1jIUV-G3G8k9eIr_f1FQcrc4P4r66-3mQifjFQZl4pVkSwlBX4_rr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label text-[10px] text-primary uppercase tracking-widest mb-1 block">Geteilt</span>
+<h4 class="font-headline text-xl font-bold">Vanta_Flow_Core</h4>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects List & Collaboration Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Projects Table-ish List -->
+<div class="lg:col-span-8">
+<div class="flex items-center gap-4 mb-8">
+<h2 class="font-headline text-3xl font-bold">Alle Projekte</h2>
+<div class="h-px flex-1 bg-outline-variant/20"></div>
+</div>
+<div class="space-y-4">
+<!-- Project Item -->
+<div class="group flex items-center gap-6 p-4 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-xl border border-transparent hover:border-outline-variant/10">
+<div class="w-16 h-16 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img alt="Shader Thumb" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="close up of a geometric pattern with glowing neon lines and dark metallic surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuvLtYR4QItmR6cdaXsCBlVcVy416sn1JKrNZ1dMK1ErVAf2NOUq_VSBz97oydNeSTT2NiBCBL-aPQxKOJSCdp6SOlsDm5oVO1WHpIDOhhuAUg9r0QUawTa6jFfH369PWb4qiciyAui715wrKB9hlWIMIe31DfieQ7hMzN5Bb6k0DcNQ20js9P7xIKTlz9AEN1dxjA_X6vVHiOLVAjUAf8_Vgn2Y8E3vFtE2idWyu16yH_j9TIMN1Eacz5XiKniH540Y6obo99qWc7"/>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="font-headline text-lg font-medium truncate">Chromatic_Abberation_Pulse</h5>
+<p class="text-sm text-on-surface-variant font-body">Geändert vor 2 Stunden • 4.2 MB</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-tighter bg-primary/10 text-primary">Veröffentlicht</span>
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-6 h-6 rounded-full border-2 border-surface" data-alt="minimalist avatar of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGAKPF06AT7p-f1RriRYdJHkEgXNPzSHnzDUkk3Bxf3BceiwBtEwqk2F1a_cxw55ALioFamdpzb_3xXAs0Qj6NTwePa_P5daydZwTOv16IKv4RoWevAkzuZzR9wnMidl2z0lcuvNrOpMwDfgTo0_F0izlRlf6EIC4Jh1M446mYTfACLoKIJ2WUpQuf4BQAzY3nVLvc8WsX8YOTgiub6j3sMBK57xzsu08yItm58Z8GIJCLybdzPe0i9CCw3x3wjkKqjnbiIV69QVox"/>
+<img alt="User 2" class="w-6 h-6 rounded-full border-2 border-surface" data-alt="minimalist avatar of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCco2VNwY0nl-vDJE27LI0iQ7bwYQX5KZFLrE2t3139K_sYSUiFxZe-mN5wQfEmfS4fxajF_qLt1rqe8M7TDe6ElkP5y0l3Z-1oxeRO5k4BPqR8KUn_zMrqS9r8NywHsaJyCJSpZdjiDb8cmFV8GuY9OgC0y1If50YC2eoj04M_xM-KeHB997_6pUNEXFuQcjO_5d_lGV1fab3aQeKETUipaA-FmvKgzv6WX1D3zpOZmKt99tTosN5dUseqkI0RMWcuJQThopP9xFrX"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+<div class="group flex items-center gap-6 p-4 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-xl border border-transparent hover:border-outline-variant/10">
+<div class="w-16 h-16 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img alt="Shader Thumb" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="fluid simulation with glowing particles in deep violet and electric blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeGHwR8bqzEsT6jpkoFGNc7b-UzHFiN_e221LGzZofxUQxex8ekv2thAvGvhegIqAz96IkrGyjzx7lAo_cXffyfG1kJLbqFhu1tZPwjbhqAEi5IC8tnQ7oLmRbt2ALgeL59m568a97wLVBjV5lJwmLPv8dSjz8us1L_RhvbRQqW4w6omv5YrW6HQL1k9u5yn1rVGRu_jM6uvA4y2Bll6jVqynB2VCv_FOjWTyXd6ODSG1ubxxTqftVhZcdEvueGkkuOR6h9OsY9BJG"/>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="font-headline text-lg font-medium truncate">Liquid_Metal_X_Test</h5>
+<p class="text-sm text-on-surface-variant font-body">Geändert gestern • 12.8 MB</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-tighter bg-surface-container-highest text-on-surface-variant">Entwurf</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface ml-8"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+<div class="group flex items-center gap-6 p-4 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-xl border border-transparent hover:border-outline-variant/10">
+<div class="w-16 h-16 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img alt="Shader Thumb" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="harsh digital noise transition with red and blue glitches on black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwB-qBB3fWyTHoFgpOTRY5rQp0heM41qpW88uM4uDhDVlvqM0ExvA_tfeNyiNGJR2mESRRK8SzHvqhffqQ_sfWQRYSxWGXNn-YO_7wHLCrl9k9fIokXu35nsnFd2_5MrsvKzpaOdLbzYUyAeZtHiIDO8ZgRjXu4DChVpHH1nY6XXfJnsqulOrRXUZIDxisefvR0S-T4LRc9ysdDTRk78LeVlr6S-J51ZWzwsNTVXiqlR8Bq4Ll1ygIAgMu-TdcnFl4tcVa_pdv-dnQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="font-headline text-lg font-medium truncate">Glitch_Transition_Module</h5>
+<p class="text-sm text-on-surface-variant font-body">Geändert vor 3 Tagen • 1.1 MB</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-tighter bg-secondary/10 text-secondary">Geteilt</span>
+<div class="flex -space-x-2">
+<img alt="User 3" class="w-6 h-6 rounded-full border-2 border-surface" data-alt="minimalist avatar of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfPZ6ZLLp-PC2uMJCJtQsVOZ2vMaNjlsxl9d9KLpgoPrlqu-MSM8UshKI_zhdO2UgKRLOXUExdyYuDoWKmEFmUf4aR4wQyuFapaSUBkTrkuwqiweObi2MqWrzv6amEBRXGdDTbwGzD1-S6PR9DPSy9KRNfTi4UwRXwP4_l2LAHDoLfEBO5KPOWyRpVg9sRYN0NNcxTAHD4yhznx8eweIeQxErPMgiXii-6fpd9lCsaqZB2e9mZMbwS3jEHGfyCh6CvhclL28EfFFIN"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+<div class="group flex items-center gap-6 p-4 bg-surface-container-low hover:bg-surface-bright transition-colors rounded-xl border border-transparent hover:border-outline-variant/10">
+<div class="w-16 h-16 rounded bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img alt="Shader Thumb" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" data-alt="abstract fractal patterns with warm golden light and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeiOa52nQav4bn-qWTwQGFYmDkpz4giywm-FhrDek5ZPJIz-XklEDrm7ezQRDf5XtTXcmOUA1WkU_MATtA9aQPyRZSwmfQq6KMYiF0Y5sFJDLIU7arI2_QHei2wXHORfuatX2cm-M4wXh7qs1ttvMrqaulOAl7p1yfr8D52vSRZxoUtz5bVqNrnZ6P6Zg4nQmNqEh_DhnA_hynA0ppbe3xYrak9c4JCo8NFHjcw-nVytAaDgUnk3nDfidzg4Z1ZUg1h8TAQggGgFyB"/>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="font-headline text-lg font-medium truncate">Fractal_Gold_Noise</h5>
+<p class="text-sm text-on-surface-variant font-body">Geändert vor 1 Woche • 6.4 MB</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-tighter bg-primary/10 text-primary">Veröffentlicht</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface ml-8"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Collaboration Feed / Activity Log -->
+<div class="lg:col-span-4">
+<div class="glass-panel rounded-2xl p-6 border border-outline-variant/10">
+<h3 class="font-headline text-xl font-bold mb-6 flex items-center justify-between">
+                    Aktivitäts-Feed
+                    <span class="material-symbols-outlined text-on-surface-variant" data-icon="bolt">bolt</span>
+</h3>
+<div class="space-y-6">
+<!-- Feed Item 1 -->
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="comment" style="font-variation-settings: 'FILL' 1;">comment</span>
+</div>
+<div>
+<p class="text-sm font-body leading-snug">
+<span class="font-bold">Alex_R</span> hat <span class="text-secondary font-medium">Neon_Nebula</span> kommentiert
+                            </p>
+<p class="text-xs text-on-surface-variant mt-1">"Der Lichtabfall an den Rändern benötigt mehr Weichheit."</p>
+<span class="text-[10px] text-outline uppercase tracking-wider mt-2 block">vor 14 Min.</span>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="share" style="font-variation-settings: 'FILL' 1;">share</span>
+</div>
+<div>
+<p class="text-sm font-body leading-snug">
+<span class="font-bold">Project_Bot</span> hat <span class="text-primary font-medium">Vanta_Flow_Core</span> mit 4 Mitwirkenden geteilt.
+                            </p>
+<span class="text-[10px] text-outline uppercase tracking-wider mt-2 block">vor 2 Std.</span>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xs text-on-surface-variant" data-icon="cloud_done" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+<div>
+<p class="text-sm font-body leading-snug">
+                                Automatisches Backup für <span class="font-medium">Chromatic_Abberation</span> abgeschlossen
+                            </p>
+<span class="text-[10px] text-outline uppercase tracking-wider mt-2 block">vor 5 Std.</span>
+</div>
+</div>
+<!-- Feed Item 4 -->
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-tertiary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-xs text-tertiary" data-icon="error" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<div>
+<p class="text-sm font-body leading-snug">
+                                Render-Fehler bei <span class="font-medium">Experimental_09</span> aufgrund von Speichermangel.
+                            </p>
+<span class="text-[10px] text-outline uppercase tracking-wider mt-2 block">Gestern</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded bg-surface-container-highest text-on-surface-variant text-xs font-label uppercase tracking-widest hover:bg-surface-bright transition-colors">
+                    Verlauf ansehen
+                </button>
+</div>
+<!-- Secondary CTA: Join Community -->
+<div class="mt-8 p-6 bg-gradient-to-tr from-[#1a0033] to-[#002233] rounded-2xl border border-primary/20 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/20 blur-3xl group-hover:bg-primary/40 transition-colors"></div>
+<h4 class="font-headline text-lg font-bold mb-2">Werden Sie Teil des Kollektivs</h4>
+<p class="text-xs text-on-surface-variant mb-4 font-body">Vernetzen Sie sich mit über 5.000 Shader-Künstlern und tauschen Sie modulare Knoten-Setups aus.</p>
+<button class="text-secondary text-xs font-label font-bold uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all">
+                    Galerie erkunden <span class="material-symbols-outlined text-sm" data-icon="east">east</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low/95 backdrop-blur-xl border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-label font-bold uppercase tracking-tighter">Start</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] font-label uppercase tracking-tighter">Erkunden</span>
+</button>
+<div class="relative -top-6">
+<button class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dim flex items-center justify-center text-on-primary shadow-xl shadow-primary/30 border-4 border-surface">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+<span class="text-[10px] font-label uppercase tracking-tighter">Bibliothek</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-label uppercase tracking-tighter">Profil</span>
+</button>
+</nav>
+</body></html>

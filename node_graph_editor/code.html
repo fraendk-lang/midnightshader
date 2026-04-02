@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MidnightShader - Shader Graph Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-dim": "#d73357",
+              "on-secondary": "#004d57",
+              "on-secondary-fixed": "#003a42",
+              "secondary-fixed": "#26e6ff",
+              "primary-fixed-dim": "#9c7eff",
+              "on-tertiary-container": "#100003",
+              "surface": "#0e0e0e",
+              "on-primary-fixed": "#000000",
+              "surface-container-low": "#131313",
+              "on-tertiary": "#48001c",
+              "on-primary-container": "#280072",
+              "on-primary-fixed-variant": "#32008a",
+              "tertiary-fixed": "#ff8fa9",
+              "tertiary": "#ff6c95",
+              "secondary": "#00e3fd",
+              "inverse-primary": "#6834eb",
+              "surface-tint": "#b6a0ff",
+              "primary-fixed": "#a98fff",
+              "error": "#ff6e84",
+              "primary": "#b6a0ff",
+              "on-secondary-fixed-variant": "#005964",
+              "on-secondary-container": "#e8fbff",
+              "surface-container-highest": "#262626",
+              "inverse-on-surface": "#565555",
+              "on-primary": "#340090",
+              "surface-bright": "#2c2c2c",
+              "inverse-surface": "#fcf9f8",
+              "tertiary-dim": "#ff6c95",
+              "surface-container-lowest": "#000000",
+              "error-container": "#a70138",
+              "surface-dim": "#0e0e0e",
+              "on-background": "#ffffff",
+              "on-error-container": "#ffb2b9",
+              "secondary-fixed-dim": "#00d7f0",
+              "secondary-container": "#006875",
+              "surface-container-high": "#20201f",
+              "primary-dim": "#7e51ff",
+              "on-error": "#490013",
+              "on-surface": "#ffffff",
+              "primary-container": "#a98fff",
+              "tertiary-fixed-dim": "#ff769b",
+              "on-tertiary-fixed": "#380014",
+              "tertiary-container": "#fd3e80",
+              "on-tertiary-fixed-variant": "#770033",
+              "surface-container": "#1a1a1a",
+              "background": "#0e0e0e",
+              "outline-variant": "#484847",
+              "on-surface-variant": "#adaaaa",
+              "secondary-dim": "#00d4ec",
+              "surface-variant": "#262626",
+              "outline": "#767575"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .node-canvas {
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .bezier-curve {
+            stroke: #b6a0ff;
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0 0 4px rgba(182, 160, 255, 0.4));
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="midnight-architect bg-surface text-on-surface overflow-hidden">
+<!-- TopAppBar Execution -->
+<header class="bg-[#0e0e0e] flex justify-between items-center w-full px-6 py-3 fixed top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#b6a0ff] font-['Space_Grotesk']">MidnightShader</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#b6a0ff] font-bold font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors" href="#">File</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors" href="#">Edit</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors" href="#">View</a>
+<a class="text-gray-400 font-['Space_Grotesk'] tracking-tight hover:text-[#00e3fd] transition-colors" href="#">Assets</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100">
+<span class="material-symbols-outlined">cloud_upload</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant opacity-20"></div>
+<button class="px-4 py-1.5 text-secondary border border-outline-variant hover:bg-surface-bright transition-colors text-sm font-label uppercase tracking-widest">Save</button>
+<button class="px-4 py-1.5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-md font-label font-bold text-sm hover:opacity-90 transition-opacity">Export</button>
+<img alt="User profile" class="w-8 h-8 rounded-full ml-2" data-alt="close-up portrait of a digital artist with colorful studio lighting reflections in glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTQ_y-g4TXZJpQQxQnPueRn5eOLWI781y3h9sMeqkFhGS0jt0ZrjTxzLNmHZpUGssfczxD2HzLN_roCQqHcmQU3iHnSS6J9Or-B5H0oAgx1HLl6j_Fokca7CqsOvhaV2M6g9FZ2BGU7iE4xZH9b0oXRZhJAUO3a-hIDStUQhonEWX3VU3reon78IVSN-6Yuj1hiI0Mj5xP_bgXXfbQhUvvzOonwnD0pOZD0jnVKwVj-7YPZ_MDDnH0FegtdQWSZp7VbAYeKkREYBB"/>
+</div>
+</header>
+<!-- SideNavBar Execution -->
+<aside class="bg-[#131313] flex flex-col h-screen fixed left-0 top-0 pt-16 w-64 z-40">
+<div class="px-6 py-4 flex flex-col gap-1">
+<span class="text-lg font-bold text-[#b6a0ff] font-['Space_Grotesk']">Shader Graph</span>
+<span class="text-xs text-gray-500 font-['Manrope']">v2.4.0-alpha</span>
+</div>
+<nav class="flex-1 mt-4 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#b6a0ff] bg-[#20201f] transition-all duration-200 ease-in-out font-['Manrope'] text-sm shadow-[inset_0_0_0_1px_rgba(182,160,255,0.22)]" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Nodes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined">tune</span>
+<span>Parameters</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined">texture</span>
+<span>Textures</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span>Layers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out font-['Manrope'] text-sm" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>History</span>
+</a>
+</nav>
+<div class="p-4">
+<button class="w-full py-2 bg-surface-container-high text-primary font-label text-sm rounded-md border border-outline-variant/20 hover:bg-surface-bright transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Add Node
+            </button>
+</div>
+<div class="mt-auto p-2 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-white text-sm" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-white text-sm" href="#">
+<span class="material-symbols-outlined text-lg">description</span>
+<span>Docs</span>
+</a>
+</div>
+</aside>
+<!-- Main Workspace Canvas -->
+<main class="ml-64 mr-80 mt-12 h-[calc(100vh-3rem)] relative overflow-hidden node-canvas bg-surface">
+<!-- SVG Layer for Connections -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none">
+<path class="bezier-curve" d="M 240 200 C 340 200, 300 350, 400 350"></path>
+<path class="bezier-curve" d="M 240 450 C 340 450, 300 380, 400 380"></path>
+<path class="bezier-curve" d="M 620 365 C 720 365, 750 365, 800 365"></path>
+</svg>
+<!-- Node: Math Operations -->
+<div class="absolute left-40 top-32 w-48 bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant/10 shadow-[0_24px_40px_rgba(255,255,255,0.06)]">
+<div class="bg-primary-container/20 px-3 py-1.5 flex justify-between items-center">
+<span class="text-[10px] font-label uppercase tracking-widest text-primary font-bold">Math Operation</span>
+<span class="material-symbols-outlined text-sm text-primary">functions</span>
+</div>
+<div class="p-3 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Value A</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Value B</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] text-on-surface-variant font-mono">Out</span>
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(182,160,255,0.6)]"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-highest px-3 py-2">
+<div class="text-[10px] text-gray-500 mb-1">Operator</div>
+<div class="text-xs text-on-surface flex items-center justify-between">
+                    Multiply
+                    <span class="material-symbols-outlined text-xs">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Node: Perlin Noise (Texture) -->
+<div class="absolute left-40 top-96 w-48 bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant/10 shadow-[0_24px_40px_rgba(255,255,255,0.06)]">
+<div class="bg-secondary/10 px-3 py-1.5 flex justify-between items-center border-b border-outline-variant/10">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary font-bold">Perlin Noise</span>
+<span class="material-symbols-outlined text-sm text-secondary">texture</span>
+</div>
+<div class="p-3">
+<div class="w-full aspect-square bg-surface-container-lowest rounded mb-3 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-gradient-to-br from-gray-800 via-gray-900 to-black opacity-60" style="background-image: radial-gradient(circle at 50% 50%, #444 0%, transparent 70%)"></div>
+</div>
+<div class="flex items-center justify-end gap-2">
+<span class="text-[11px] text-on-surface-variant font-mono">Result</span>
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,227,253,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Node: Main Output -->
+<div class="absolute left-[400px] top-72 w-56 bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant/10 shadow-[0_24px_40px_rgba(255,255,255,0.06)]">
+<div class="bg-primary/20 px-3 py-1.5 flex justify-between items-center">
+<span class="text-[10px] font-label uppercase tracking-widest text-on-background font-bold">PBR Material</span>
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<div class="p-3 space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Albedo</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Normal</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Metallic</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Roughness</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-[11px] text-on-surface-variant font-mono">Emission</span>
+</div>
+<div class="pt-2 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-on-surface-variant font-mono">Surface</span>
+<div class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(169,143,255,0.4)]"></div>
+</div>
+</div>
+</div>
+<!-- Floating Graph Tools -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 glass-panel px-4 py-2 rounded-full border border-outline-variant/20 flex items-center gap-6 shadow-2xl z-20">
+<div class="flex items-center gap-3">
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<span class="text-[10px] font-mono text-gray-500">100%</span>
+<button class="p-1.5 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">zoom_out</span>
+</button>
+</div>
+<div class="w-[1px] h-4 bg-outline-variant opacity-20"></div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-[11px] font-label uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">grid_on</span>
+                    Snap
+                </button>
+<button class="flex items-center gap-2 text-[11px] font-label uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span>
+                    Layout
+                </button>
+</div>
+</div>
+<!-- Small Visual Preview Window -->
+<div class="absolute bottom-8 right-8 w-48 aspect-square glass-panel rounded-lg border border-outline-variant/20 overflow-hidden shadow-2xl group cursor-pointer">
+<div class="absolute top-2 left-2 z-10 bg-black/60 px-2 py-1 rounded text-[9px] font-label uppercase tracking-tighter border border-outline-variant/20">Live Preview</div>
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="3D abstract obsidian sphere with glowing purple plasma veins floating in a dark cinematic void" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhYgBhkeyylxOHAiJOfxCuMEpOwhsyIY_Prx9wf1gmvYv6Ci9BIChZZ6j-f6lXnXm9jKKWWC-tSXRiIfxWBihiUOF6mBLz3JiT7rTcrbU9Sbuo839kJgiBP5k30SCUr8ye9Zteb79Rw9DVOWSw85cdBTivEj8C-jPFzyjwU88TkYD9ADGUwO9JY6JrvUuy7WPAG3L92AbpTRIVFxWSWMkjZ4fLus7AVBDz341w2Sqt54La4-FzfbIHx8ZRcuVA_3-KeJKOqQz_BWU3"/>
+<div class="absolute bottom-2 right-2 flex gap-1">
+<button class="p-1 bg-black/40 rounded hover:bg-black/80 transition-colors">
+<span class="material-symbols-outlined text-sm">open_in_full</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Properties Sidebar (Right) -->
+<aside class="fixed right-0 top-12 w-80 h-[calc(100vh-3rem)] bg-[#131313] z-40 border-l border-outline-variant/10">
+<div class="p-6">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-sm font-label font-bold uppercase tracking-widest text-primary">Node Properties</h2>
+<span class="material-symbols-outlined text-gray-500 text-lg">info</span>
+</div>
+<!-- Property Group: Identification -->
+<div class="space-y-6">
+<div>
+<label class="block text-[10px] font-label uppercase tracking-widest text-gray-500 mb-2">Node Name</label>
+<input class="w-full bg-surface-container-highest border-none text-sm font-body text-on-surface p-2.5 rounded-md focus:ring-1 focus:ring-primary/40 transition-all" type="text" value="PBR Material"/>
+</div>
+<!-- Property Group: Material Settings -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="text-xs font-body text-on-surface-variant">Base Color</label>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-sm bg-primary border border-outline-variant/20"></div>
+<span class="text-[10px] font-mono text-gray-400">#B6A0FF</span>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-xs font-body text-on-surface-variant">Metallic</label>
+<span class="text-[10px] font-mono text-primary">0.85</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-xs font-body text-on-surface-variant">Roughness</label>
+<span class="text-[10px] font-mono text-primary">0.12</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%]"></div>
+</div>
+</div>
+</div>
+<!-- Property Group: Advanced -->
+<div class="pt-6 border-t border-outline-variant/10">
+<label class="block text-[10px] font-label uppercase tracking-widest text-gray-500 mb-4">Blending Mode</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 text-[10px] font-label uppercase tracking-tighter bg-primary text-on-primary rounded border border-primary">Opaque</button>
+<button class="py-2 text-[10px] font-label uppercase tracking-tighter bg-surface-container-highest text-gray-400 rounded border border-outline-variant/10 hover:border-primary/40 transition-colors">Alpha</button>
+<button class="py-2 text-[10px] font-label uppercase tracking-tighter bg-surface-container-highest text-gray-400 rounded border border-outline-variant/10 hover:border-primary/40 transition-colors">Additive</button>
+<button class="py-2 text-[10px] font-label uppercase tracking-tighter bg-surface-container-highest text-gray-400 rounded border border-outline-variant/10 hover:border-primary/40 transition-colors">Multiply</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Mini-Metrics -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex justify-between text-[9px] font-mono text-gray-600 uppercase tracking-widest">
+<span>Verts: 24.5k</span>
+<span>Draw: 12ms</span>
+<span>VRAM: 1.2GB</span>
+</div>
+</div>
+</aside>
+</body></html>

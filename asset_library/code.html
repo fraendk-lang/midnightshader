@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MidnightShader | Asset Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error-dim": "#d73357",
+            "on-secondary": "#004d57",
+            "on-secondary-fixed": "#003a42",
+            "secondary-fixed": "#26e6ff",
+            "primary-fixed-dim": "#9c7eff",
+            "on-tertiary-container": "#100003",
+            "surface": "#0e0e0e",
+            "on-primary-fixed": "#000000",
+            "surface-container-low": "#131313",
+            "on-tertiary": "#48001c",
+            "on-primary-container": "#280072",
+            "on-primary-fixed-variant": "#32008a",
+            "tertiary-fixed": "#ff8fa9",
+            "tertiary": "#ff6c95",
+            "secondary": "#00e3fd",
+            "inverse-primary": "#6834eb",
+            "surface-tint": "#b6a0ff",
+            "primary-fixed": "#a98fff",
+            "error": "#ff6e84",
+            "primary": "#b6a0ff",
+            "on-secondary-fixed-variant": "#005964",
+            "on-secondary-container": "#e8fbff",
+            "surface-container-highest": "#262626",
+            "inverse-on-surface": "#565555",
+            "on-primary": "#340090",
+            "surface-bright": "#2c2c2c",
+            "inverse-surface": "#fcf9f8",
+            "tertiary-dim": "#ff6c95",
+            "surface-container-lowest": "#000000",
+            "error-container": "#a70138",
+            "surface-dim": "#0e0e0e",
+            "on-background": "#ffffff",
+            "on-error-container": "#ffb2b9",
+            "secondary-fixed-dim": "#00d7f0",
+            "secondary-container": "#006875",
+            "surface-container-high": "#20201f",
+            "primary-dim": "#7e51ff",
+            "on-error": "#490013",
+            "on-surface": "#ffffff",
+            "primary-container": "#a98fff",
+            "tertiary-fixed-dim": "#ff769b",
+            "on-tertiary-fixed": "#380014",
+            "tertiary-container": "#fd3e80",
+            "on-tertiary-fixed-variant": "#770033",
+            "surface-container": "#1a1a1a",
+            "background": "#0e0e0e",
+            "outline-variant": "#484847",
+            "on-surface-variant": "#adaaaa",
+            "secondary-dim": "#00d4ec",
+            "surface-variant": "#262626",
+            "outline": "#767575"
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk"],
+            "body": ["Manrope"],
+            "label": ["Space Grotesk"],
+            "mono": ["JetBrains Mono"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: #0e0e0e; }
+    ::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b6a0ff; }
+  </style>
+</head>
+<body class="midnight-architect bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="bg-[#0e0e0e] text-[#b6a0ff] font-['Space_Grotesk'] tracking-tight docked full-width top-0 z-50 fixed w-full border-b border-outline-variant/10">
+<div class="flex justify-between items-center w-full px-6 py-3">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#b6a0ff]">MidnightShader</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">File</a>
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Edit</a>
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">View</a>
+<a class="text-[#b6a0ff] font-bold hover:text-[#00e3fd] transition-colors scale-95 duration-100" href="#">Assets</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-high rounded-lg group">
+<span class="material-symbols-outlined text-sm text-gray-500 group-focus-within:text-secondary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-gray-600" placeholder="Search assets..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-gray-400 hover:text-white transition-colors">add</button>
+<button class="material-symbols-outlined text-gray-400 hover:text-white transition-colors">cloud_upload</button>
+<button class="material-symbols-outlined text-gray-400 hover:text-white transition-colors">settings</button>
+</div>
+<div class="h-6 w-px bg-outline-variant/20 mx-2"></div>
+<button class="px-4 py-1.5 text-sm font-label font-bold text-secondary border border-secondary/20 rounded-md hover:bg-secondary/10 transition-all">Save</button>
+<button class="px-4 py-1.5 text-sm font-label font-bold bg-primary text-on-primary rounded-md shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">Export</button>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="bg-[#131313] text-[#b6a0ff] font-['Manrope'] text-sm docked left-0 h-screen w-64 fixed flex flex-col pt-4">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-[#b6a0ff] leading-none">Shader Graph</h2>
+<span class="text-[10px] text-gray-500 uppercase tracking-widest">v2.4.0-alpha</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Nodes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">tune</span>
+<span>Parameters</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#b6a0ff] bg-[#20201f] border-r-2 border-[#b6a0ff] transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">texture</span>
+<span>Textures</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">layers</span>
+<span>Layers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>History</span>
+</a>
+</nav>
+<div class="px-4 pb-4 space-y-4">
+<button class="w-full py-3 bg-surface-container-high text-primary font-bold rounded-lg hover:bg-surface-bright transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_box</span>
+          Add Node
+        </button>
+<div class="h-px bg-outline-variant/10 mx-2"></div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-white text-xs" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-white text-xs" href="#">
+<span class="material-symbols-outlined text-sm">description</span>
+<span>Docs</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 min-h-screen bg-surface p-8 pr-96">
+<!-- Header / Filter Section -->
+<section class="mb-12">
+<div class="flex items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="font-headline text-5xl font-extrabold tracking-tighter mb-2">Asset Library</h1>
+<p class="text-on-surface-variant font-light">Manage and deploy production-ready textures and meshes.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary font-label text-sm font-bold rounded-md">ALL</button>
+<button class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-sm font-bold rounded-md hover:bg-surface-container-high transition-colors">TEXTURES</button>
+<button class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-sm font-bold rounded-md hover:bg-surface-container-high transition-colors">MESHES</button>
+<button class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-sm font-bold rounded-md hover:bg-surface-container-high transition-colors">TEMPLATES</button>
+</div>
+</div>
+<!-- Bento Grid for Assets -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Large Featured Card (Asymmetric) -->
+<div class="col-span-1 lg:col-span-2 row-span-2 group relative overflow-hidden bg-surface-container-low rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-all cursor-pointer">
+<div class="aspect-[16/10] bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700" data-alt="abstract flowing purple and cyan 3D landscape with obsidian textures and dramatic lighting with neon highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADxR4Q3xA7DcvDY5SbgmFokFl8NpJ_JvswCVmMUjRQQv21HtFy8IPEkCk1f4uh8v6xoGKIhAgf33k88-ESJbWGPOWGSTf216Tzx9dFcoUDX7GWglW_I58OzlI0F077rtQY4tNNEYb7f3PIFdsjAL29Mm5eNaeTbrKHYfF2HQZmEJlauOF2gOS3R9WfAg4TITr-y82VrBftHoiy-zFeKWgk4-X9Mx2zYHm9d3xdiNnp1TtXop3FZjXQymxR9QjUUkYm4SuC-1rjECdT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 bg-secondary/20 text-secondary text-[10px] font-mono tracking-widest uppercase rounded">Template</span>
+<span class="text-on-surface-variant text-[10px] font-mono uppercase">Shader v1.2</span>
+</div>
+<h3 class="font-headline text-3xl font-bold mb-2">Flux Obsidian Core</h3>
+<p class="text-on-surface-variant text-sm max-w-md">Advanced PBR material with dynamic subsurface scattering and iridescent flux channels.</p>
+</div>
+</div>
+<!-- Small Grid Items -->
+<div class="group bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 hover:border-secondary/40 transition-all cursor-pointer">
+<div class="aspect-square bg-surface-container-highest rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" data-alt="detailed macro shot of dark metallic brushed texture with subtle purple light reflections and procedural noise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB9g-uhjPjpBAmdzp63iRSjhTNXGI4A28QSSVE2mmmjNK3IlhMk_5GSSFsrQWyxoi5W8QNvN4SvK-7a1xWQUJq76DRycghLNyBafi-8yxzahxWYblYt2-mFKtzzuwOUUcRhk-Zhqbk88-WML7aQ1dPDY28cJ_n0U9FkKsaV0K4AiC4mpH3BzAz7GijUjJqxH0b6ggb2erBACy1rgGk8I8fPwV0uPQaHBvK2tzU5AIGtKuJRqPQ976GhzK_gMbIVIwVbRoM3v9da83W"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-sm">Brushed Dark Steel</h4>
+<p class="text-[10px] text-on-surface-variant font-mono">NORMAL_MAP_4K.PNG</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">texture</span>
+</div>
+</div>
+<div class="group bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 hover:border-secondary/40 transition-all cursor-pointer">
+<div class="aspect-square bg-surface-container-highest rounded-lg mb-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant group-hover:text-secondary group-hover:scale-110 transition-all">token</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-sm">Geo Sphere High-Poly</h4>
+<p class="text-[10px] text-on-surface-variant font-mono">MESH_PRIMITIVE_OBJ</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">category</span>
+</div>
+</div>
+<div class="group bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 hover:border-secondary/40 transition-all cursor-pointer">
+<div class="aspect-square bg-surface-container-highest rounded-lg mb-4 overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 transition-all duration-500" data-alt="procedural marble texture with high contrast black and white veins and subtle purple tint" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxNtEqtoeuGXOh7O8vK0PJCFJNQu0Gc3wjM2z414SE7H8NuwkITS-svDm3r3eo_TuiAFfucN2vPr8f5jSWmevipZc2JC8zONOAriTF7pIvKAAHVvlCXRfqef0AvXhXOyAUzFPXhfgE5_BiiCyUuHLhqj6Qd9JfoyZfofAOw4xrJdwI-k-67IhusnGc_uFEx20HScAioZnOFrGft75MnyOW0A2A0bq1F-lvsrXrWWlihrm1iVT19Grl2T_KxiEGriac3-zSAOAXeWaj"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-sm">Nero Marble Flux</h4>
+<p class="text-[10px] text-on-surface-variant font-mono">TEXTURE_ALBEDO.EXR</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">texture</span>
+</div>
+</div>
+<div class="group bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 hover:border-secondary/40 transition-all cursor-pointer">
+<div class="aspect-square bg-surface-container-highest rounded-lg mb-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant group-hover:text-primary transition-all">view_in_ar</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-sm">Cube Displacement</h4>
+<p class="text-[10px] text-on-surface-variant font-mono">MESH_SUBDIV_6</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">category</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Properties Panel (Right Sidebar) -->
+<aside class="fixed right-0 top-16 bottom-0 w-96 bg-surface-container-low border-l border-outline-variant/10 p-6 flex flex-col gap-8">
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-lg font-bold">Asset Properties</h2>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-white">close</span>
+</div>
+<div class="aspect-video bg-black rounded-lg mb-6 relative group overflow-hidden border border-outline-variant/20">
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<img class="w-full h-full object-cover" data-alt="zoomed in macro view of procedural metallic shader with fine grain details and ambient occlusion shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ0l6R_gsLXryE245vSrrxH4WdatgQ4bfpRue9OgE8Mgyf4vkO1n68x4Xj4X8j0xzX2FjRYmeNIzLARuM5RmTNIVilyERch623N1MHYivig4yovCoioY3lJTFuAVqTv4MvKEJfM6hhrjw01Ll-fCpiUfp-yagLiNRmOrW7OjDoyP_TZCOX4redrenb65JwXcVqdin7sgvc3qEssi_q902PaXDGdV2u2WEI9BdKRFkqb2_5q6UJfU2mNN9CdB32Pj3QusFpWm7xrMzS"/>
+</div>
+<div class="absolute bottom-2 right-2 flex gap-1">
+<button class="w-6 h-6 rounded bg-surface-container-highest/80 backdrop-blur-md flex items-center justify-center text-[10px] font-mono">4K</button>
+<button class="w-6 h-6 rounded bg-surface-container-highest/80 backdrop-blur-md flex items-center justify-center text-[10px] font-mono">HDR</button>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<label class="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest block mb-2">Identification</label>
+<h3 class="text-xl font-bold mb-1">Brushed Dark Steel</h3>
+<p class="text-xs text-on-surface-variant">assets/textures/pbr/metal_014_brushed.shd</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 bg-surface-container-high rounded-lg border border-outline-variant/5">
+<label class="text-[10px] font-mono text-on-surface-variant uppercase block mb-1">Resolution</label>
+<span class="font-bold">4096 x 4096</span>
+</div>
+<div class="p-3 bg-surface-container-high rounded-lg border border-outline-variant/5">
+<label class="text-[10px] font-mono text-on-surface-variant uppercase block mb-1">Format</label>
+<span class="font-bold">.EXR (32bit)</span>
+</div>
+</div>
+<div>
+<label class="text-[10px] font-mono text-on-surface-variant uppercase tracking-widest block mb-4">Shader Channels</label>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-2 hover:bg-surface-bright rounded transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm">Albedo / Base Color</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">visibility</span>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-bright rounded transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm">Normal Map</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">visibility</span>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-bright rounded transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-sm">Roughness</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">visibility</span>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-bright rounded transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-gray-500"></div>
+<span class="text-sm">Ambient Occlusion</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">visibility</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 space-y-3">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label font-bold rounded-md shadow-xl shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all">
+          Import to Canvas
+        </button>
+<button class="w-full py-4 bg-transparent border border-outline-variant/20 text-on-surface-variant font-label font-bold rounded-md hover:bg-surface-container-highest transition-colors">
+          Download Archive
+        </button>
+</div>
+</aside>
+</div>
+<!-- Bottom FAB for mobile (usually suppressed in desktop apps, but keeping logic in mind) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-[60]">
+<span class="material-symbols-outlined">add</span>
+</button>
+</body></html>

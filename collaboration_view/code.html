@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MidnightShader | Project Alpha Collaboration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#0e0e0e",
+              "surface-variant": "#262626",
+              "on-tertiary-container": "#100003",
+              "surface-container-low": "#131313",
+              "surface-container-high": "#20201f",
+              "surface-tint": "#b6a0ff",
+              "error": "#ff6e84",
+              "primary": "#b6a0ff",
+              "on-tertiary": "#48001c",
+              "on-error": "#490013",
+              "on-secondary-container": "#e8fbff",
+              "inverse-surface": "#fcf9f8",
+              "on-background": "#ffffff",
+              "secondary": "#00e3fd",
+              "tertiary-dim": "#ff6c95",
+              "inverse-primary": "#6834eb",
+              "tertiary-container": "#fd3e80",
+              "primary-fixed-dim": "#9c7eff",
+              "secondary-fixed": "#26e6ff",
+              "primary-container": "#a98fff",
+              "on-primary": "#340090",
+              "tertiary-fixed": "#ff8fa9",
+              "on-primary-fixed-variant": "#32008a",
+              "surface": "#0e0e0e",
+              "error-dim": "#d73357",
+              "on-error-container": "#ffb2b9",
+              "secondary-fixed-dim": "#00d7f0",
+              "outline-variant": "#484847",
+              "surface-dim": "#0e0e0e",
+              "surface-container-lowest": "#000000",
+              "surface-container": "#1a1a1a",
+              "on-surface-variant": "#adaaaa",
+              "secondary-dim": "#00d4ec",
+              "on-secondary-fixed": "#003a42",
+              "tertiary": "#ff6c95",
+              "on-secondary": "#004d57",
+              "on-tertiary-fixed-variant": "#770033",
+              "on-primary-fixed": "#000000",
+              "on-tertiary-fixed": "#380014",
+              "secondary-container": "#006875",
+              "tertiary-fixed-dim": "#ff769b",
+              "on-primary-container": "#280072",
+              "primary-dim": "#7e51ff",
+              "surface-container-highest": "#262626",
+              "surface-bright": "#2c2c2c",
+              "on-surface": "#ffffff",
+              "error-container": "#a70138",
+              "on-secondary-fixed-variant": "#005964",
+              "outline": "#767575",
+              "inverse-on-surface": "#565555",
+              "primary-fixed": "#a98fff"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="midnight-architect bg-background text-on-surface overflow-hidden">
+<!-- TopNavBar -->
+<nav class="bg-[#0e0e0e] flex justify-between items-center w-full px-8 h-16 fixed top-0 z-50 font-['Space_Grotesk'] tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#b6a0ff]">MidnightShader</span>
+<div class="hidden md:flex gap-6">
+<a class="text-[#ffffff] opacity-60 hover:opacity-100 transition-opacity duration-200" href="#">Portfolio</a>
+<a class="text-[#b6a0ff] border-b-2 border-[#b6a0ff] pb-1 hover:opacity-100 transition-opacity duration-200" href="#">Collaborate</a>
+<a class="text-[#ffffff] opacity-60 hover:opacity-100 transition-opacity duration-200" href="#">Assets</a>
+<a class="text-[#ffffff] opacity-60 hover:opacity-100 transition-opacity duration-200" href="#">Studio</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#ffffff] opacity-60 hover:opacity-100 transition-opacity">notifications</button>
+<button class="material-symbols-outlined text-[#ffffff] opacity-60 hover:opacity-100 transition-opacity">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="Artist profile avatar" data-alt="Close-up of a digital artist with cool neon lighting reflecting on their face and glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvWSxQFrOO92nuEMyRymijTZXtTfpJ3NfKy5ECCW7xfrmf1oAW79fTSTle-l_P8RpLCHp4fQXZapop4H62WfMZA6XJXEAQm2i-S9RI0SIiu-zMVSx3yvoVJNHwjdSxMayVBZEWxOsBFhFqBYo-_9hQXoKIkR6XssVK0xL_7wUIcO2N1boaJQssJpu67A_-OtMRMzFrWmpTsgV_CPUJruCQIX8ZYM1ai0GiVPT8NF_tiUIf_cLTfmPDWQpeeJVdvZpelh_pPqFycKZs"/>
+</div>
+</div>
+</nav>
+<div class="flex h-screen pt-16">
+<!-- SideNavBar -->
+<aside class="bg-[#131313] flex flex-col h-full py-6 w-64 border-r border-outline-variant/10 font-['Space_Grotesk'] text-xs uppercase monospaced">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00e3fd]">deployed_code</span>
+</div>
+<div>
+<h3 class="text-[#ffffff] font-bold">Project Alpha</h3>
+<p class="opacity-40 text-[10px]">Collaborative Space</p>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-4 px-6 py-3 text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span>Workspace</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#b6a0ff] bg-[#20201f] border-r-2 border-[#b6a0ff] ease-out duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Team</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span>Comments</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>History</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200" href="#">
+<span class="material-symbols-outlined">lock_open</span>
+<span>Permissions</span>
+</a>
+</nav>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full py-2 bg-gradient-to-r from-[#b6a0ff] to-[#a98fff] text-[#340090] font-bold rounded-md hover:scale-95 transition-transform duration-150">
+                    Invite Member
+                </button>
+</div>
+</aside>
+<!-- Main Collaboration Canvas -->
+<main class="flex-1 bg-surface flex flex-col relative overflow-hidden">
+<!-- Canvas Header -->
+<header class="h-14 bg-surface-container-low px-8 flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<span class="text-secondary material-symbols-outlined">hub</span>
+<h1 class="font-headline font-semibold text-sm tracking-widest uppercase">Shared Project: Project Alpha</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<img alt="James D." class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Portrait of James D. in dramatic low-key studio lighting with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeBqXT3hL791779tI4RrvhU7vVAtPoa6q_0yNNMVPSyUWcLxAhlC-NkYSiI1RD2osCkf7D7ehs8N0TZQTqyjjoAP-RScFlGD4ynFt_gqIgq6QCar8oSmeZt5swB1ejNzynkzvdCZQ_PcMEZ2Tct9TepQGuNmE48h-jQ17-xizfHKnvVdM6FztG9R1V_LIrmqa1RW7q3HNXzLsKXYPH7DBukJAmNDmlzlbzOgMpzgDlvYAsU1afVpQdJHJJ4aIVHpbcwvxjNwbJEeUf"/>
+<img alt="Elena S." class="w-8 h-8 rounded-full border-2 border-surface" data-alt="Portrait of Elena S. with soft ethereal lighting and professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC16qP9j0gAeRh-LHquMVxnkBanffA5PTkDZ8B3tq54oEuPtJd6d2LMO6KrPn6lyNA2P95G2S6sbM4Cqad5CV90CdT-ZLlRNipRk5A-pEXafMMxLJPol_FyyJ4zGcxxeKx7lwdVVRbUhaUia0B9jGs4wyad0HZe9sU9H2H8QRHzFqkAtGgkR53oP8pEksktcM8j2E-gG9szaqFKOCyXFNYVtMjDpanVgPUglhvnQX3rAah1DMgAwGozXs-pUEj79c_hD8JftBCLEsN"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary flex items-center justify-center text-[10px] text-on-primary font-bold">+2</div>
+</div>
+<button class="flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-md text-xs font-headline font-medium hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[16px]">share</span>
+                        Share
+                    </button>
+</div>
+</header>
+<!-- Workspace: Code & Preview Grid -->
+<div class="flex-1 grid grid-cols-12 gap-px bg-outline-variant/10 overflow-hidden">
+<!-- Editor Area -->
+<section class="col-span-7 bg-surface p-6 flex flex-col font-mono">
+<div class="flex items-center gap-4 mb-4 text-[10px] uppercase tracking-widest text-on-surface-variant">
+<span class="text-primary">main.frag</span>
+<span class="opacity-50">config.json</span>
+<span class="opacity-50">utils.glsl</span>
+</div>
+<div class="flex-1 text-sm leading-relaxed overflow-y-auto">
+<div class="flex gap-4">
+<span class="opacity-20 select-none">01</span>
+<span class="text-secondary">#version 450</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">02</span>
+<span class="text-on-surface-variant">layout(location = 0) out vec4 fragColor;</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">03</span>
+<span> </span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">04</span>
+<span class="text-primary-fixed-dim">void main() {</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">05</span>
+<span class="bg-[#b6a0ff]/20 border-l-2 border-[#b6a0ff] pl-2">  vec2 uv = gl_FragCoord.xy / resolution;</span>
+<span class="ml-4 text-[10px] bg-primary text-on-primary px-1 rounded">Elena S. editing...</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">06</span>
+<span>  float dist = length(uv - 0.5);</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">07</span>
+<span class="text-tertiary">fragColor = vec4(dist, 0.4, 0.8, 1.0);</span>
+</div>
+<div class="flex gap-4">
+<span class="opacity-20 select-none">08</span>
+<span class="text-primary-fixed-dim">}</span>
+</div>
+</div>
+</section>
+<!-- Preview & Side Panels -->
+<section class="col-span-5 flex flex-col bg-surface-container-low border-l border-outline-variant/10 overflow-hidden">
+<!-- Real-time Preview -->
+<div class="h-1/2 p-4 relative group">
+<div class="w-full h-full rounded-lg bg-surface-container-highest overflow-hidden relative">
+<img alt="Shader Preview" class="w-full h-full object-cover opacity-80" data-alt="Abstract 3D render of flowing purple and cyan liquid metal textures with high-contrast reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc1y2byA-z53EjjNhuXjk0cYT0XSCj4KHdWCK7iTfUnIp7eUNYI4p3-2NL1-cYmK9MmWp3-CpR3kQtQdhR0Ng6RzJbeg2St9i5ZYgHyxjONZZg-gDCLYxsP-vbygEDWbLhNpsL2ZS39A2DLhiPQsgfOPLXhen6TbLrwVnoTyryB4TyEupw6xBIkShEIX0hShzzDIm3zmFiqoqyFEYIo1ctF976EoOV4OLoiAWq5jbbWq5opi-T4GNz-mf_b7Fs6sF621VAx9AYGqet"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-[10px] font-headline uppercase tracking-tighter">Live Render 60FPS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat & Activity Tabbed Panel -->
+<div class="flex-1 flex flex-col overflow-hidden">
+<div class="flex border-b border-outline-variant/10 px-4">
+<button class="px-4 py-3 text-[10px] font-headline font-bold text-primary border-b-2 border-primary tracking-widest uppercase">Discussion</button>
+<button class="px-4 py-3 text-[10px] font-headline font-medium text-on-surface-variant hover:text-on-surface transition-colors tracking-widest uppercase">History</button>
+</div>
+<!-- Chat Feed -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-6">
+<!-- Message -->
+<div class="flex gap-3">
+<img alt="James D." class="w-8 h-8 rounded-full shrink-0" data-alt="User avatar James D." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW6VIY2imdHOyN8ry3h6pSEgjGwDd1j-wH9rgJN_iPYJ6f_jiyFztAnzuF299dIqWCk8B3DEuyfUDsJdVTKkrnzhSMqzR-25lXKM8rQT6c7x1-qdesLM-hChoEL5LsKxAef9uAWoe2DL9qRvMQQANG5QLpM7QLJF9MTni_re-pJSpOXbQrwvJqC92R4LjqskR_pLzHwyYlXT0iixnLy9tSqaxLZ4D-15UuisZVRT6YCofJrtoWTbEgYhlEbVRB_wWnYYooL0faFJQQ"/>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[11px] font-bold font-headline">James D.</span>
+<span class="text-[9px] opacity-40">10:42 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant bg-surface-container-high p-3 rounded-lg rounded-tl-none">Should we adjust the blooming effect on the fragment shaders? It's feeling a bit heavy on the neon.</p>
+</div>
+</div>
+<!-- Message -->
+<div class="flex gap-3">
+<img alt="Elena S." class="w-8 h-8 rounded-full shrink-0" data-alt="User avatar Elena S." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDIiuJlWc_cSz5p2CXMdJoAEzDfKlaRK449ZyWoSZdeFDml2glFNNDb_TZ1DZWUgZCy2W5y5SNp8HJBNQCsdPdzGjgwQMjepsc4bnHRjS1RGp58J8QlZdeHJG8SHQTzfoRqqQMwMszZWPU6lhYggQc-mTQ9c5Npj4JzLr0iYLxrO52SZs-FNsypLOgCUf4uo-d95ngA6kJkDgC5H9YblLbrgkpVF0ymkVgg4UKREjGnWm2hDuaTIHV-FCygOoK5bhQFVAHtRQZ1kHx"/>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[11px] font-bold font-headline text-secondary">Elena S.</span>
+<span class="text-[9px] opacity-40">10:45 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant bg-surface-container-high p-3 rounded-lg rounded-tl-none">Agree. I'm tweaking the <code class="text-secondary px-1">dist</code> variable now to see if we can soften the center.</p>
+</div>
+</div>
+<!-- System Message -->
+<div class="flex justify-center">
+<span class="bg-surface-container-highest px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-on-surface-variant font-headline">System: Version 2.4.1 Saved</span>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 bg-surface-container-low">
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none rounded-md text-xs py-3 pl-4 pr-12 focus:ring-1 focus:ring-primary/40 placeholder:opacity-30" placeholder="Type a message..." type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-primary text-[20px]">send</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Right Side Panel: Permissions & Team Details -->
+<aside class="w-72 bg-[#0e0e0e] border-l border-outline-variant/10 flex flex-col">
+<div class="p-6">
+<h3 class="font-headline font-bold text-xs uppercase tracking-[0.2em] mb-6 text-on-surface-variant">Active Team</h3>
+<div class="flex flex-col gap-5">
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Owner" class="w-10 h-10 rounded-lg grayscale group-hover:grayscale-0 transition-all" data-alt="Artist avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwDMV6CzQ4KjZDoDR4UzKg-WNXh6weapZkyoT59KJY2UlC91ca6jhNUqddiRRLaqh2EvbEjcqjbkVcHLH-7YaxkaZ8b6ogzVdXuWMq1ypBKatM09y8aq-FS7OTkI-voCmbH3sy_fKkTjFTcAVbXlCJdRV0Xa2CGXatYKcgKib8l-EmNc2bel0BTdIt-4LhGTuHVT7251VfIhFZfkLwtY1nNksTzIZAqLO98u_PxE66_JUdOGgpq00CTe0VKEmXj7m0q4hSNbd21EmP"/>
+<span class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-[#0e0e0e] rounded-full"></span>
+</div>
+<div>
+<p class="text-[11px] font-bold font-headline">Architect (You)</p>
+<p class="text-[9px] text-primary uppercase font-headline">Owner</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="James" class="w-10 h-10 rounded-lg grayscale group-hover:grayscale-0 transition-all" data-alt="James D. avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWouUfH_5GZnPw6OzXiNqfZ6tpefYuHDAPg2xyGbtWRLLvkD-pqdiJjDC4p15Ge8P_DB2XS_YVz6zaQfQZIi_UOvSHO0Wk19u6mAkDkJXsx-rFacpHaAtiionyeXvhz4hPr8y4xsUpzXh-siJ3pMxYQBXmsOXtZ_2nGGXewicm9gmnHEDj0ATPa3xMUJwyyZTcoi2TDcwjz5UPc9i05SYysF7oqauG46fAtILcQrEqquaMwR2zzjTuVm-OEwwCBQr3ECq-Ia68E-I"/>
+<span class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-[#0e0e0e] rounded-full"></span>
+</div>
+<div>
+<p class="text-[11px] font-bold font-headline">James D.</p>
+<p class="text-[9px] text-on-surface-variant uppercase font-headline">Editor</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface text-[18px]">more_vert</button>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Elena" class="w-10 h-10 rounded-lg grayscale group-hover:grayscale-0 transition-all" data-alt="Elena S. avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3mWMGAKsaDpvmy2idM4Qc_Rovs8khoAVaLu9GsNk4AodDukjiqQyFDJhNVfVzEARhCr1-mxqfNrCRd4QBie3V3S0JlEAsqrQqlbTDEVS3MrlkeWPA-iQVhWjgmDU3t9bbP2ASGpu7syLLyPml1d-W_DqfoEKo7LivSJSHuj_Y8Q1qsGQNbTI0PmCss8mjjnEhCvBASddqNkoNLbUa7dEHTVHM8oYGd7cmq3YUaJ8zkruVXnMQnmrtEIxi_-fcdsVso6fbvV8wVpXw"/>
+<span class="absolute -bottom-1 -right-1 w-3 h-3 bg-secondary border-2 border-[#0e0e0e] rounded-full"></span>
+</div>
+<div>
+<p class="text-[11px] font-bold font-headline">Elena S.</p>
+<p class="text-[9px] text-on-surface-variant uppercase font-headline">Editor</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface text-[18px]">more_vert</button>
+</div>
+</div>
+<div class="mt-12">
+<h3 class="font-headline font-bold text-xs uppercase tracking-[0.2em] mb-4 text-on-surface-variant">Access Control</h3>
+<div class="space-y-3">
+<div class="bg-surface-container-high p-3 rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold font-headline">Project Privacy</span>
+<span class="text-[9px] bg-primary/10 text-primary px-2 py-0.5 rounded">Private</span>
+</div>
+<p class="text-[10px] text-on-surface-variant">Only invited members can view or edit this workspace.</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg flex items-center justify-between hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="text-[10px] font-bold font-headline">Viewer Permissions</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">chevron_right</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg flex items-center justify-between hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="text-[10px] font-bold font-headline">Token Generation</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">key</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 text-secondary mb-4">
+<span class="material-symbols-outlined text-[20px]">cloud_sync</span>
+<span class="text-[10px] font-bold font-headline uppercase tracking-widest">Real-time sync enabled</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-secondary rounded-full"></div>
+</div>
+<p class="text-[9px] text-on-surface-variant mt-2 text-center">4.2GB / 10GB Creative Cloud Storage</p>
+</div>
+</aside>
+</div>
+<!-- Floating UI: Tooltip (Example of Glassmorphism) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-panel border border-outline-variant/20 px-6 py-3 rounded-full flex items-center gap-6 shadow-2xl z-50">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">play_arrow</button>
+<button class="material-symbols-outlined text-on-surface/60 hover:text-on-surface transition-colors">pause</button>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<button class="material-symbols-outlined text-on-surface/60 hover:text-on-surface transition-colors">videocam</button>
+<button class="material-symbols-outlined text-on-surface/60 hover:text-on-surface transition-colors">mic</button>
+<button class="material-symbols-outlined text-error hover:scale-110 transition-transform">call_end</button>
+</div>
+</body></html>

@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String            @id @default(uuid())
+  email        String            @unique
+  passwordHash String
+  displayName  String
+  createdAt    DateTime          @default(now())
+
+  entries      CommunityEntry[]
+  likes        EntryLike[]
+  favorites    EntryFavorite[]
+}
+
+model CommunityEntry {
+  id          String   @id @default(uuid())
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+
+  title       String
+  tagline     String?
+  description String?
+
+  fragment    String
+  uniforms    Json
+  layers      Json?
+
+  thumbnailKey  String?
+  thumbnailMime String?
+
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  publishedAt DateTime @default(now())
+
+  likes       EntryLike[]
+  favorites   EntryFavorite[]
+
+  @@index([authorId])
+  @@index([publishedAt])
+}
+
+model EntryLike {
+  userId    String
+  entryId   String
+  createdAt DateTime @default(now())
+
+  user      User @relation(fields: [userId], references: [id])
+  entry     CommunityEntry @relation(fields: [entryId], references: [id])
+
+  @@id([userId, entryId])
+  @@index([entryId])
+}
+
+model EntryFavorite {
+  userId    String
+  entryId   String
+  createdAt DateTime @default(now())
+
+  user      User @relation(fields: [userId], references: [id])
+  entry     CommunityEntry @relation(fields: [entryId], references: [id])
+
+  @@id([userId, entryId])
+  @@index([entryId])
+}
+

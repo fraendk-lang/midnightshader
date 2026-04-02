@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MidnightShader | Shader-Visual-Designer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-dim": "#d73357",
+              "on-error-container": "#ffb2b9",
+              "on-secondary-fixed-variant": "#005964",
+              "primary-fixed": "#a98fff",
+              "on-surface": "#ffffff",
+              "on-primary-fixed": "#000000",
+              "on-surface-variant": "#adaaaa",
+              "outline": "#767575",
+              "primary": "#b6a0ff",
+              "surface-container-highest": "#262626",
+              "on-tertiary": "#48001c",
+              "surface-container": "#1a1a1a",
+              "tertiary-container": "#fd3e80",
+              "tertiary-fixed-dim": "#ff769b",
+              "secondary": "#00e3fd",
+              "primary-container": "#a98fff",
+              "on-primary-fixed-variant": "#32008a",
+              "inverse-surface": "#fcf9f8",
+              "primary-fixed-dim": "#9c7eff",
+              "on-secondary": "#004d57",
+              "on-secondary-fixed": "#003a42",
+              "on-primary": "#340090",
+              "on-tertiary-fixed-variant": "#770033",
+              "on-tertiary-fixed": "#380014",
+              "on-background": "#ffffff",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#280072",
+              "secondary-fixed": "#26e6ff",
+              "primary-dim": "#7e51ff",
+              "on-secondary-container": "#e8fbff",
+              "surface-variant": "#262626",
+              "surface-bright": "#2c2c2c",
+              "error": "#ff6e84",
+              "surface-container-lowest": "#000000",
+              "error-container": "#a70138",
+              "surface-container-high": "#20201f",
+              "on-error": "#490013",
+              "secondary-fixed-dim": "#00d7f0",
+              "surface-dim": "#0e0e0e",
+              "tertiary-dim": "#ff6c95",
+              "background": "#0e0e0e",
+              "tertiary-fixed": "#ff8fa9",
+              "surface": "#0e0e0e",
+              "tertiary": "#ff6c95",
+              "on-tertiary-container": "#100003",
+              "secondary-container": "#006875",
+              "inverse-primary": "#6834eb",
+              "surface-container-low": "#131313",
+              "secondary-dim": "#00d4ec",
+              "outline-variant": "#484847",
+              "surface-tint": "#b6a0ff"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .syntax-keyword { color: #b6a0ff; }
+        .syntax-func { color: #00e3fd; }
+        .syntax-type { color: #ff8fa9; }
+        .syntax-comment { color: #767575; font-style: italic; }
+        .syntax-number { color: #26e6ff; }
+        
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b6a0ff; }
+    </style>
+</head>
+<body class="midnight-architect bg-background text-on-surface font-body overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-[#0e0e0e] text-[#b6a0ff] font-['Space_Grotesk'] tracking-tight flex justify-between items-center w-full px-6 py-3 fixed top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold tracking-tighter text-[#b6a0ff]">MidnightShader</div>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-[#b6a0ff] font-bold hover:text-[#00e3fd] transition-colors" href="#">Datei</a>
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">Bearbeiten</a>
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">Ansicht</a>
+<a class="text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">Ressourcen</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4">
+<button class="material-symbols-outlined p-2 text-gray-400 hover:text-[#00e3fd] transition-all scale-95 duration-100">add</button>
+<button class="material-symbols-outlined p-2 text-gray-400 hover:text-[#00e3fd] transition-all scale-95 duration-100">cloud_upload</button>
+<button class="material-symbols-outlined p-2 text-gray-400 hover:text-[#00e3fd] transition-all scale-95 duration-100">settings</button>
+</div>
+<button class="px-4 py-1.5 rounded-lg border border-outline-variant text-secondary font-medium hover:bg-surface-container-high transition-colors text-sm">Speichern</button>
+<button class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold hover:opacity-90 transition-all text-sm">Exportieren</button>
+</div>
+</header>
+<!-- Sidebar & Workspace Grid -->
+<main class="pt-14 h-screen flex">
+<!-- SideNavBar (Left) -->
+<aside class="bg-[#131313] text-[#b6a0ff] font-['Manrope'] text-sm flex flex-col h-full w-64 border-r border-outline-variant/10">
+<div class="p-6 flex flex-col gap-1">
+<h2 class="text-lg font-bold text-[#b6a0ff]">Shader-Graph</h2>
+<span class="text-[0.6875rem] font-label text-gray-500 uppercase tracking-widest">v2.4.0-alpha</span>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+<div class="py-2">
+<button class="flex items-center gap-3 w-full px-3 py-2 text-[#b6a0ff] bg-[#20201f] border-r-2 border-[#b6a0ff] transition-all duration-200">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Knoten</span>
+</button>
+<button class="flex items-center gap-3 w-full px-3 py-2 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined">tune</span>
+<span>Parameter</span>
+</button>
+<button class="flex items-center gap-3 w-full px-3 py-2 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined">texture</span>
+<span>Texturen</span>
+</button>
+<button class="flex items-center gap-3 w-full px-3 py-2 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined">layers</span>
+<span>Ebenen</span>
+</button>
+<button class="flex items-center gap-3 w-full px-3 py-2 text-gray-500 hover:bg-[#20201f] hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined">history</span>
+<span>Verlauf</span>
+</button>
+</div>
+<!-- Parameters / Uniforms Section -->
+<div class="mt-8">
+<p class="px-3 text-[0.6875rem] font-bold text-gray-400 uppercase tracking-widest mb-4">Uniformen</p>
+<div class="space-y-6 px-3">
+<div class="space-y-2">
+<div class="flex justify-between items-center text-[0.75rem]">
+<span class="text-on-surface">Geschwindigkeit</span>
+<span class="text-secondary font-mono">0.45</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-[0.75rem]">
+<span class="text-on-surface">Skalierung</span>
+<span class="text-secondary font-mono">1.20</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-[0.75rem]">
+<span class="text-on-surface">Verzerrung</span>
+<span class="text-secondary font-mono">0.12</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div class="space-y-2">
+<span class="text-[0.75rem] text-on-surface block mb-1">Farbe</span>
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary cursor-pointer border border-white/10"></div>
+<div class="w-8 h-8 rounded-lg bg-secondary cursor-pointer border border-white/10"></div>
+<div class="w-8 h-8 rounded-lg bg-tertiary cursor-pointer border border-white/10"></div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center cursor-pointer border border-white/10">
+<span class="material-symbols-outlined text-xs">colorize</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="p-4 space-y-4">
+<button class="w-full py-2.5 rounded bg-surface-container-high border border-outline-variant/30 text-primary font-bold flex items-center justify-center gap-2 hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Knoten hinzufügen
+            </button>
+<div class="flex justify-between px-2 text-gray-500 text-xs">
+<span class="flex items-center gap-1 hover:text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-sm">help</span> Hilfe
+                </span>
+<span class="flex items-center gap-1 hover:text-on-surface cursor-pointer">
+<span class="material-symbols-outlined text-sm">description</span> Doku
+                </span>
+</div>
+</div>
+</aside>
+<!-- Main Center Area (Viewport) -->
+<section class="flex-1 relative bg-surface-container-lowest overflow-hidden group">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full" style="background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);"></div>
+<!-- Simulated Shader Content -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[80px] opacity-40 bg-primary animate-pulse"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-surface-container-lowest flex items-center justify-center">
+<div class="w-full h-full rounded-full relative overflow-hidden flex items-center justify-center" style="background: linear-gradient(135deg, #b6a0ff 0%, #00e3fd 100%);">
+<!-- Visual Mesh Simulation -->
+<div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<img class="w-full h-full object-cover mix-blend-overlay" data-alt="abstract fluid liquid metallic texture with glowing purple and cyan neon lights reflecting off swirling surfaces dark futuristic mood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ZyG-hQI-j9Mzis41PI3ZmnJ4n3CiLjOUvQ8xW09CCtKsuZADHlRHeJ2ZiSN3EQbWSTn460MggtcO4FCjkLlDwbTwXawdxiTE5wYoPrLo6JRcQoe59rIzWVZIZ6s1Y-Pv0f0s2t1MOrc5jZoQvAzrs975OwY_DeWeTP0K_uvBkYO0-dN7oKs3gxChwAoVjR15WqnETr_Kd3mSceMx91NMiHR8L8mHiDhkaJo5Id359U6q5wVNK-nzGUamx6AXyFtKwsf3BFPSVXvc"/>
+</div>
+</div>
+</div>
+<!-- Viewport Controls Overlay -->
+<div class="absolute bottom-6 left-6 flex gap-2">
+<div class="bg-surface-container-highest/80 backdrop-blur-xl border border-outline-variant/10 rounded-lg p-1 flex gap-1">
+<button class="p-2 hover:bg-white/10 rounded text-gray-400 hover:text-primary transition-colors tooltip" title="Kamera zurücksetzen">
+<span class="material-symbols-outlined text-[18px]">recenter</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded text-gray-400 hover:text-primary transition-colors" title="Raster umschalten">
+<span class="material-symbols-outlined text-[18px]">grid_4x4</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded text-gray-400 hover:text-primary transition-colors" title="Beleuchtung umschalten">
+<span class="material-symbols-outlined text-[18px]">wb_sunny</span>
+</button>
+</div>
+<div class="bg-surface-container-highest/80 backdrop-blur-xl border border-outline-variant/10 rounded-lg p-1 flex gap-1">
+<button class="p-2 hover:bg-white/10 rounded text-gray-400 hover:text-primary transition-colors" title="Vollbild">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Status Indicator -->
+<div class="absolute top-6 left-6 px-3 py-1 bg-surface-container-highest/80 backdrop-blur-xl border border-outline-variant/10 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#00e3fd]"></span>
+<span class="text-[0.6875rem] font-mono font-medium tracking-tight">60.0 FPS</span>
+</div>
+</section>
+<!-- Right Panel (Shader Code-Ansicht) -->
+<aside class="w-[420px] bg-surface-container-low flex flex-col border-l border-outline-variant/10">
+<div class="h-12 flex items-center justify-between px-4 bg-surface-container-high border-b border-outline-variant/5">
+<div class="flex gap-4">
+<span class="text-xs font-bold text-primary border-b-2 border-primary py-3">Fragment</span>
+<span class="text-xs font-medium text-gray-500 py-3 cursor-pointer hover:text-on-surface">Vertex</span>
+</div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined text-gray-500 hover:text-on-surface text-lg">content_copy</button>
+</div>
+</div>
+<div class="flex-1 overflow-auto p-6 bg-surface-container-low font-mono text-[13px] leading-relaxed">
+<pre class="text-on-surface-variant"><span class="syntax-comment">// Fluid Plasma Shader v2</span>
+<span class="syntax-type">precision</span> <span class="syntax-type">highp</span> <span class="syntax-type">float</span>;
+
+<span class="syntax-type">uniform</span> <span class="syntax-type">float</span> u_time;
+<span class="syntax-type">uniform</span> <span class="syntax-type">vec2</span> u_resolution;
+<span class="syntax-type">uniform</span> <span class="syntax-type">float</span> u_speed;
+<span class="syntax-type">uniform</span> <span class="syntax-type">float</span> u_scale;
+
+<span class="syntax-type">void</span> <span class="syntax-func">main</span>() {
+    <span class="syntax-type">vec2</span> uv = gl_FragCoord.xy / u_resolution.xy;
+    <span class="syntax-type">float</span> t = u_time * u_speed;
+    
+    <span class="syntax-type">float</span> r = <span class="syntax-func">sin</span>(uv.x * u_scale + t);
+    <span class="syntax-type">float</span> g = <span class="syntax-func">sin</span>(uv.y * u_scale + t * <span class="syntax-number">0.5</span>);
+    <span class="syntax-type">float</span> b = <span class="syntax-func">cos</span>((uv.x + uv.y) * u_scale + t);
+    
+    <span class="syntax-type">vec3</span> color = <span class="syntax-type">vec3</span>(r, g, b) * <span class="syntax-number">0.5</span> + <span class="syntax-number">0.5</span>;
+    
+    <span class="syntax-comment">// Applying Luminance</span>
+    <span class="syntax-type">float</span> luma = <span class="syntax-func">dot</span>(color, <span class="syntax-type">vec3</span>(<span class="syntax-number">0.299</span>, <span class="syntax-number">0.587</span>, <span class="syntax-number">0.114</span>));
+    color = <span class="syntax-func">mix</span>(color, <span class="syntax-type">vec3</span>(luma), <span class="syntax-number">0.2</span>);
+
+    gl_FragColor = <span class="syntax-type">vec4</span>(color, <span class="syntax-number">1.0</span>);
+}</pre>
+</div>
+<!-- Footer CTA -->
+<div class="p-6 bg-surface-container-high/50 border-t border-outline-variant/5">
+<button class="w-full py-3 rounded-lg bg-surface-container-highest text-on-surface border border-outline-variant/20 hover:bg-surface-bright flex items-center justify-center gap-2 transition-all group">
+<span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">download</span>
+<span class="font-bold tracking-tight text-sm">Code herunterladen</span>
+</button>
+<div class="mt-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[0.625rem] text-gray-500 uppercase tracking-widest font-bold">Shader-Größe</span>
+<span class="text-xs font-mono text-secondary">1.24 KB</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[0.625rem] text-gray-500 uppercase tracking-widest font-bold">GPU-Last</span>
+<span class="text-xs font-mono text-error">12%</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Floating Toast Overlay -->
+<div class="fixed bottom-6 right-6 z-50">
+<div class="bg-surface-container-highest/60 backdrop-blur-2xl border border-primary/20 p-4 rounded-xl shadow-2xl flex items-center gap-4 max-w-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Auto-Kompilierung...</span>
+<span class="text-xs text-on-surface-variant">Änderungen erfolgreich auf Vorschau angewendet.</span>
+</div>
+<button class="material-symbols-outlined text-gray-500 ml-4">close</button>
+</div>
+</div>
+</body></html>

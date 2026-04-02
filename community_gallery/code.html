@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Roboto+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#ffffff",
+                        "outline-variant": "#484847",
+                        "surface-dim": "#0e0e0e",
+                        "surface-bright": "#2c2c2c",
+                        "secondary-fixed-dim": "#00d7f0",
+                        "on-secondary-fixed-variant": "#005964",
+                        "inverse-surface": "#fcf9f8",
+                        "primary-container": "#a98fff",
+                        "on-secondary-container": "#e8fbff",
+                        "background": "#0e0e0e",
+                        "on-error-container": "#ffb2b9",
+                        "on-tertiary-container": "#100003",
+                        "tertiary-dim": "#ff6c95",
+                        "surface-tint": "#b6a0ff",
+                        "tertiary-container": "#fd3e80",
+                        "on-error": "#490013",
+                        "primary-dim": "#7e51ff",
+                        "surface-container": "#1a1a1a",
+                        "primary-fixed-dim": "#9c7eff",
+                        "on-surface-variant": "#adaaaa",
+                        "on-secondary": "#004d57",
+                        "surface-variant": "#262626",
+                        "outline": "#767575",
+                        "primary-fixed": "#a98fff",
+                        "on-secondary-fixed": "#003a42",
+                        "on-surface": "#ffffff",
+                        "tertiary-fixed-dim": "#ff769b",
+                        "surface-container-highest": "#262626",
+                        "on-tertiary-fixed": "#380014",
+                        "secondary-dim": "#00d4ec",
+                        "on-primary-fixed": "#000000",
+                        "error-container": "#a70138",
+                        "on-tertiary": "#48001c",
+                        "surface-container-lowest": "#000000",
+                        "on-primary": "#340090",
+                        "secondary-fixed": "#26e6ff",
+                        "on-primary-fixed-variant": "#32008a",
+                        "error-dim": "#d73357",
+                        "error": "#ff6e84",
+                        "inverse-primary": "#6834eb",
+                        "on-primary-container": "#280072",
+                        "surface": "#0e0e0e",
+                        "primary": "#b6a0ff",
+                        "inverse-on-surface": "#565555",
+                        "tertiary-fixed": "#ff8fa9",
+                        "surface-container-high": "#20201f",
+                        "on-tertiary-fixed-variant": "#770033",
+                        "surface-container-low": "#131313",
+                        "tertiary": "#ff6c95",
+                        "secondary": "#00e3fd",
+                        "secondary-container": "#006875"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"],
+                        "mono": ["Roboto Mono"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #b6a0ff 0%, #a98fff 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #484847; }
+    </style>
+</head>
+<body class="midnight-architect bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar predicted component -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0e0e0e] flex justify-between items-center w-full px-8 h-16 font-['Space_Grotesk'] tracking-tight">
+<div class="flex items-center gap-12">
+<span class="text-xl font-bold text-[#b6a0ff] uppercase tracking-widest">Obsidian Flux</span>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#b6a0ff] border-b-2 border-[#b6a0ff] pb-1 hover:opacity-100 transition-all" href="#">Featured</a>
+<a class="text-[#ffffff] opacity-60 hover:opacity-100 hover:text-[#00e3fd] transition-all" href="#">New</a>
+<a class="text-[#ffffff] opacity-60 hover:opacity-100 hover:text-[#00e3fd] transition-all" href="#">Trending</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-surface-container-highest border-none text-sm px-4 py-2 rounded-md w-64 focus:ring-1 focus:ring-primary-dim transition-all" placeholder="Search shaders..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-on-surface-variant text-sm">search</span>
+</div>
+<button class="scale-95 transition-transform duration-200 text-[#ffffff] opacity-60 hover:opacity-100">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar predicted component -->
+<aside class="fixed left-0 top-0 h-full flex flex-col items-center py-8 bg-[#131313] w-20 z-40 pt-24 font-['Space_Grotesk'] text-xs uppercase">
+<div class="flex flex-col items-center gap-8 w-full">
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-[#b6a0ff] bg-[#20201f] rounded-md p-3 w-14">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[10px]">Gallery</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200 p-3 w-14 rounded-md">
+<span class="material-symbols-outlined" data-icon="polyline">polyline</span>
+<span class="text-[10px]">Workspace</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200 p-3 w-14 rounded-md">
+<span class="material-symbols-outlined" data-icon="deployed_code">deployed_code</span>
+<span class="text-[10px]">Assets</span>
+</div>
+<div class="mt-auto flex flex-col items-center gap-2 group cursor-pointer text-[#ffffff] opacity-40 hover:bg-[#20201f] hover:opacity-100 ease-out duration-200 p-3 w-14 rounded-md">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px]">Settings</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-20 pt-24 px-12 pb-12">
+<!-- Header & Stats -->
+<section class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-mono text-secondary text-xs tracking-widest uppercase mb-4 block">Archive.v1 / Global Cluster</span>
+<h1 class="font-headline text-6xl font-bold tracking-tighter leading-none mb-6">
+                    Community <br/><span class="text-primary-fixed">Shader Gallery</span>
+</h1>
+<p class="text-on-surface-variant max-w-md font-body leading-relaxed">
+                    Explore high-performance mathematical art and procedural textures generated by technical architects from the Obsidian Flux ecosystem.
+                </p>
+</div>
+<div class="flex flex-wrap gap-4 h-fit">
+<div class="bg-surface-container-low px-6 py-4 rounded-xl border border-outline-variant/10">
+<span class="block text-primary-fixed font-headline font-bold text-2xl">24.1k</span>
+<span class="block font-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Active Nodes</span>
+</div>
+<div class="bg-surface-container-low px-6 py-4 rounded-xl border border-outline-variant/10">
+<span class="block text-secondary-fixed-dim font-headline font-bold text-2xl">102.8s</span>
+<span class="block font-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Avg Pulse Rate</span>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<div class="flex items-center justify-between mb-10 pb-6">
+<div class="flex gap-4 items-center">
+<button class="bg-primary text-on-primary font-headline text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full">Trending</button>
+<button class="bg-surface-container-low text-on-surface-variant hover:text-on-surface font-headline text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full transition-colors">Newest</button>
+<button class="bg-surface-container-low text-on-surface-variant hover:text-on-surface font-headline text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full transition-colors">Most Liked</button>
+</div>
+<div class="flex gap-6 items-center">
+<div class="flex items-center gap-2 text-on-surface-variant font-mono text-[11px] uppercase">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                    Refine Stream
+                </div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<!-- Shader Card 1 (Large/Feature) -->
+<div class="lg:col-span-2 lg:row-span-2 group relative overflow-hidden rounded-2xl bg-surface-container-low flex flex-col transition-all duration-500">
+<div class="relative h-[480px] w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="abstract flowing liquid metal shader with iridescent purple and cyan highlights reflecting cosmic light sources" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjkn-4svpdgoiEJ1Ge9c0_fN5pJDEGHo6j0seeVtleNa4TAf7mpwI-3q6aPy5yzpTYqzMUVF7s_mZAR1gAshHyGMEt2AU_XBZLHuGGC90y8UVhI7VffSYHpKQWMy-q0zjRpnPdKexNlIZQ-SONtvteXfFxcbKw_YvxGW9rthVy2GVsiapqO-cFWIksaIce9buumo8Lxye3FA5vwwA_qlDFsQb2D3Z7D0F2j7b-jOmQGeOLVCUXCYTwkYZdnpdqaSPbsrc0-gdBFSLH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+<div class="absolute top-6 left-6">
+<span class="glass-panel text-secondary font-mono text-[10px] px-3 py-1 rounded-full uppercase tracking-tighter border border-secondary/20">Featured Fragment</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+<div>
+<h3 class="font-headline text-4xl font-bold text-white mb-2">Liquid Mercury</h3>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center">
+<img class="w-full h-full rounded-full object-cover" data-alt="portrait of a tech artist in professional studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2iGY3QLZfgHJwaH329AsqCZL2LK6tFQuQ3jYnSpAr5KkTaVcE_iF754nkVJSjUFZ9ZsaR5fJDXIyTQC6wBBC7QCHYYqsFsAYOH_Q0gGk2rZSzLIvpKUqrB439yamkU-bXLTxBvRgidi5MjEHXz3hoOBQYb6s5wo0pFaNwW_5xyoMOXOdXa6mJ5NrXbyN4PfH4fytyOwJDbSoYBozWn0rEmDp_1XdRklKLlzZ4eMpIGWF5U4WJJyytewtdxI2K_flxeKgsL7Ol_mRY"/>
+</div>
+<span class="font-mono text-xs text-on-surface-variant">@vector_logic</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="glass-panel p-3 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">favorite</span>
+</button>
+<button class="primary-gradient text-on-primary font-headline text-sm font-bold uppercase px-6 py-3 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">cycle</span>
+                                Remix
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Shader Card 2 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="abstract geometric fractal shader with glowing neon orange and electric blue lines on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqfFhx6Dh3Orif9Curwa7nKaMelVd69WrVkXJcc6V1FUYaZVnva4d_HZDmwL6ISI5Lo9-b1_uok6y2a5VT_B3JS1wbYBMy8DGRyeSHO-PDnQ8QEFySmZjbnPeHz71TVlxArbvWBc5lJtQLlIA3z_2o5gJcnhjd4lO3Qj_v9MqAwVGJXcnpE8Y5e6txf71R8nmtD6SkMtEk6utltdyfS1XqMAccLWXox82F-qDH6QVr3as62DI6aNIE-I_kiOOiRqGs_8w0Fo3FskoC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Neon Nebula</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            1.2k
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@pixel_drift</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+<!-- Shader Card 3 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="vibrant energy field shader with swirling gaseous clouds and prismatic light refraction effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw4CJ-POUPO-Klcd3fJ9GpGIFBE3IQNlhGzoxDUWQHW7exq260Hes3YpofP-kVbl90ExUYVYHLjCYtzT987hiTfljf7l7VFpn3bGdUZiZr6XBDMm3k5XVJvHoyCsYIerNMk7uEGkWvwOPOR2GgYX_wvfojCCs3f6b9ZIgBxJ1ezGQ3O8CZBNTmAIyHGujExflM701p3N2esV4p6yDYO5SucXYCX6IJHe5IvovzWC0a0-6-ly_vmA8EGcLnx0kZ-jirvZLjuL2yFqeA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Prism Flare</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            843
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@vertex_ghost</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+<!-- Shader Card 4 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="minimalist architectural wireframe shader with glowing grid lines and deep shadow depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsDB6ulLEoXPXtcQVfdfF22jB89vuf4wDHAIJDrpDk4eNCnmRceWXulRqdDDVk93e6t46WvFjANF0JBr2KKflLOl1PldNP9BI6LEo9IpvzEHFBpBMEYqyqCAoPbqP9Th4uOaX-VWIQeYhqf46KASMYsVQSPaUyrg2ckKQouWIZJQp3eWA418OuFl6Os9MIKuKlQMTwLKZ9xdBeBd0s9jE_SOXY8dWK4dlKZNvt5V8nEV7srdW9gMbtynQoPErP4A2qQVaBmVOfdzTD"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Grid Ghost</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            2.4k
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@arch_struct</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+<!-- Shader Card 5 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="digital topography shader representing a planet surface with glowing data streams and blue energy waves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANdlLti9rNjgLlVul2p3JBpgtdZvc945qbX2UxUx2DOWzBRIPtbXMRR_CeiNjaPxz5VJIYTsuYbg_pEMozXn-oUv7XleB8PRm61QWR93Si-N3DFFUtXCAnxjkPusGUSlp0rxCiACpsgumMt1JspUbxPYoXe7HaWUZxHziidal0ENu-bSJRRqZgvhPTJxP7b-BmsM41Svf0F1hIdGGOUqekiJN6mysRWfUYCFzEGwVZ9tuWzZMYEzQaO1jYJ2xay9D-jrsp1zzDo7-B"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Cyber Sphere</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            511
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@orbit_zero</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+<!-- Sidebar/Drawer Style Info Panel (Bento) -->
+<div class="xl:col-span-1 xl:row-span-2 glass-panel rounded-2xl p-8 border border-white/5 flex flex-col justify-between">
+<div>
+<h5 class="font-headline text-xl font-bold mb-6">Architect of the Week</h5>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary p-[2px]">
+<div class="w-full h-full rounded-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a male designer with creative lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBik1FQL3smlBXtw_6Ro0JsxJ_66Rst18VKwDhlUJnAqzopCec_KZXipJr_RGFoC7nAdhSAAV9xq3QcjeePFtb5fFtfYMmeA33P1GQZjsVYRSgVS74plt2kFYsxLwBrm-oDIwY-YxKLCirAyyWDSKnoPIi7SIt6mbrJO4gXy0m6MI-sAB_7SvgssoZIONgo-iYOS2F9H4kYlnPiY6xqHpR1kR0Ges3E7ZdSfANbgD6bUM5Wg1xNJ6pBewYnVjQzISs14r3Hg-h4NaBg"/>
+</div>
+</div>
+<div>
+<p class="font-headline font-bold text-lg">Elias Thorne</p>
+<p class="font-mono text-[10px] text-secondary-fixed-dim uppercase tracking-widest">Master of Flow</p>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between font-mono text-[11px]">
+<span class="text-on-surface-variant uppercase">Contributions</span>
+<span>142 Shaders</span>
+</div>
+<div class="flex justify-between font-mono text-[11px]">
+<span class="text-on-surface-variant uppercase">Remixes</span>
+<span>1.2k Total</span>
+</div>
+<div class="flex justify-between font-mono text-[11px]">
+<span class="text-on-surface-variant uppercase">Reputation</span>
+<span class="text-primary">Level 42</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant italic leading-relaxed">
+                        "The beauty of a shader lies not in its complexity, but in the elegance of its mathematical soul."
+                    </p>
+</div>
+<button class="w-full py-4 border border-outline-variant/20 rounded-xl font-headline text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-colors">
+                    View Portfolio
+                </button>
+</div>
+<!-- Shader Card 6 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="stark black and white geometric pattern shader with optical illusion effects and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB8xuDGbmGAc9Px3EawZnYVHrX2w-qhTLmJqgHp4UJuLPtbb86XO9tREkC_MDmCGYSFZLGBNal-ldCZus76-4E5qpFx8kyTYAvsaxHSrBET1UGQOjMjQNL8aDnFil9vBPKLI54EyvemjDbAg5FWpgGo2tf4iBR6O1aVYmqfM4io3D3wlezhNMGMP81c7SwUDyJrgBTsxOwolGQGE1FlqAehJL0Pj4Pjff4ccqHe1_TPAiWM8Bqwmk8_2t_p-cNlERJeC-kyEU1z7n8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Mono Matrix</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            219
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@null_void</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+<!-- Shader Card 7 -->
+<div class="group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all duration-300">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="abstract organic shader with bioluminescent filaments and soft glowing particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVPhC_x7UNatBx21kgzhilxznW9HQOFE5rNloq_VHHzjYjDYhm6sv3yuySQS1XEvKyL7dCuznMwBE4fVm27KQvtEzTJzeC8h5t7dLaLIFq1SqU7YMewBxr9Pdsyof6wMnGOMQP_prN9D4VjQVhqxN9YJt4sVOiL3_MU-xzpRLuS91KxIcvLUWqPT6tvxr4JAHievIuBd1Fz3q2ceWmerWZp29NhCd69uVs4yuzF6K9fRmD6kyXWKdrxWLrPmC9vJgeIdrFWIMDXeO-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-40"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-lg font-bold">Bio Wire</h4>
+<div class="flex items-center gap-1 text-on-surface-variant font-mono text-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                            6.1k
+                        </div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-outline-variant/30"></div>
+<span class="text-xs text-on-surface-variant">@neural_ink</span>
+</div>
+<button class="text-primary font-headline text-[10px] font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">Remix</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More Footer -->
+<div class="mt-20 flex flex-col items-center">
+<button class="group flex flex-col items-center gap-4 transition-transform hover:translate-y-1">
+<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant group-hover:text-primary transition-colors">Load more fragments</span>
+<span class="material-symbols-outlined text-primary text-3xl animate-bounce">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Contextual FAB -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="primary-gradient w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(182,160,255,0.4)] group hover:scale-110 transition-all">
+<span class="material-symbols-outlined text-on-primary text-3xl group-hover:rotate-90 transition-transform">add</span>
+</button>
+</div>
+</body></html>

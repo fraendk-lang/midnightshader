@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MidnightShader · Obsidian Flux</title>
+    <style>
+      :root {
+        --surface: #0e0e0e;
+        --surface-low: #131313;
+        --surface-high: #20201f;
+        --primary: #b6a0ff;
+        --secondary: #00e3fd;
+        --text: #ffffff;
+        --text-dim: #adaaaa;
+        --ghost: rgba(72, 72, 71, 0.25);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--surface);
+        color: var(--text);
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .wrap {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: -0.02em;
+      }
+      .lead {
+        margin: 0 0 28px;
+        color: var(--text-dim);
+        line-height: 1.5;
+        font-size: 15px;
+      }
+      .cta {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--primary), #a98fff);
+        color: #340090;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 15px;
+      }
+      .cta:hover {
+        filter: brightness(1.08);
+      }
+      .hint {
+        margin: 24px 0 0;
+        font-size: 13px;
+        color: var(--text-dim);
+        line-height: 1.5;
+      }
+      details {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--ghost);
+      }
+      summary {
+        cursor: pointer;
+        color: var(--text-dim);
+        font-size: 13px;
+      }
+      summary:hover {
+        color: var(--secondary);
+      }
+      .ref-list {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .ref-list li {
+        margin-bottom: 8px;
+      }
+      .ref-list a {
+        color: var(--secondary);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>MidnightShader · Obsidian Flux</h1>
+      <p class="lead">
+        Die App läuft auf Port <strong>5183</strong> (eigener Vite-Port, damit nichts mit fremden Apps
+        auf 5173 kollidiert). Diese Seite kommt vom statischen Server (4173).
+      </p>
+      <a class="cta" href="http://localhost:5183/">App öffnen</a>
+      <p class="hint">
+        Das Startskript <code>OPEN_MIDNIGHTSHADER.command</code> soll die App direkt öffnen. Wenn du
+        hier landest: obigen Link nutzen. Alte Lesezeichen mit „React App: … (MVP)“ stammen nicht aus
+        dem aktuellen Projekt — ggf. Cache leeren oder Lesezeichen aktualisieren.
+      </p>
+
+      <details>
+        <summary>Statische HTML-Mockups (nur Design-Referenz, gleicher Server 4173)</summary>
+        <ul class="ref-list">
+          <li><a href="http://localhost:4173/projekt_dashboard_de/code.html">Projekt-Dashboard (DE)</a></li>
+          <li><a href="http://localhost:4173/project_dashboard/code.html">Project Dashboard (EN)</a></li>
+          <li><a href="http://localhost:4173/node_graph_editor/code.html">Node Graph Editor (HTML)</a></li>
+          <li><a href="http://localhost:4173/einstellungen_de/code.html">Einstellungen (DE)</a></li>
+          <li><a href="http://localhost:4173/settings/code.html">Settings (EN)</a></li>
+          <li><a href="http://localhost:4173/shader_designer_de/code.html">Shader Designer (DE)</a></li>
+          <li><a href="http://localhost:4173/asset_library/code.html">Asset Library</a></li>
+        </ul>
+      </details>
+    </div>
+  </body>
+</html>

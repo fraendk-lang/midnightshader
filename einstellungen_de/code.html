@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Einstellungen | Obsidian Flux</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-dim": "#00d4ec",
+                        "primary": "#b6a0ff",
+                        "on-primary-fixed": "#000000",
+                        "inverse-primary": "#6834eb",
+                        "on-background": "#ffffff",
+                        "tertiary-fixed-dim": "#ff769b",
+                        "secondary": "#00e3fd",
+                        "tertiary-fixed": "#ff8fa9",
+                        "background": "#0e0e0e",
+                        "inverse-on-surface": "#565555",
+                        "primary-dim": "#7e51ff",
+                        "primary-container": "#a98fff",
+                        "on-surface": "#ffffff",
+                        "on-error-container": "#ffb2b9",
+                        "error-container": "#a70138",
+                        "inverse-surface": "#fcf9f8",
+                        "surface-dim": "#0e0e0e",
+                        "error-dim": "#d73357",
+                        "on-secondary-fixed": "#003a42",
+                        "error": "#ff6e84",
+                        "surface-tint": "#b6a0ff",
+                        "surface-container-high": "#20201f",
+                        "tertiary": "#ff6c95",
+                        "outline-variant": "#484847",
+                        "on-secondary-container": "#e8fbff",
+                        "surface-bright": "#2c2c2c",
+                        "on-primary-container": "#280072",
+                        "outline": "#767575",
+                        "tertiary-container": "#fd3e80",
+                        "surface-variant": "#262626",
+                        "on-tertiary-container": "#100003",
+                        "on-primary": "#340090",
+                        "secondary-fixed": "#26e6ff",
+                        "surface": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#770033",
+                        "on-secondary-fixed-variant": "#005964",
+                        "surface-container-low": "#131313",
+                        "on-surface-variant": "#adaaaa",
+                        "on-tertiary": "#48001c",
+                        "primary-fixed": "#a98fff",
+                        "on-secondary": "#004d57",
+                        "secondary-fixed-dim": "#00d7f0",
+                        "surface-container": "#1a1a1a",
+                        "surface-container-lowest": "#000000",
+                        "secondary-container": "#006875",
+                        "surface-container-highest": "#262626",
+                        "on-primary-fixed-variant": "#32008a",
+                        "primary-fixed-dim": "#9c7eff",
+                        "tertiary-dim": "#ff6c95",
+                        "on-tertiary-fixed": "#380014",
+                        "on-error": "#490013"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #484847;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="midnight-architect flex min-h-screen overflow-hidden">
+<!-- Seitennavigation -->
+<aside class="h-screen w-64 left-0 sticky bg-[#131313] flex flex-col border-r border-[#484847]/15">
+<!-- Header -->
+<div class="px-8 py-10">
+<h1 class="font-headline text-sm uppercase tracking-widest text-[#b6a0ff]">Einstellungen</h1>
+<p class="font-body text-[10px] text-on-surface-variant uppercase mt-1">Arbeitsbereich-Optionen verwalten</p>
+</div>
+<!-- Navigations-Tabs -->
+<nav class="flex-1 mt-4">
+<!-- Konto Tab -->
+<a class="group flex items-center px-6 py-4 text-[#ffffff] opacity-40 hover:opacity-100 hover:bg-[#20201f] transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="person">person</span>
+<span class="font-headline text-sm uppercase tracking-widest">Konto</span>
+</a>
+<!-- Editor Tab (Aktiv) -->
+<a class="group flex items-center px-6 py-4 bg-[#20201f] text-[#b6a0ff] rounded-r-lg border-l-4 border-[#b6a0ff] transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="code">code</span>
+<span class="font-headline text-sm uppercase tracking-widest">Editor</span>
+</a>
+<!-- Rendering Tab -->
+<a class="group flex items-center px-6 py-4 text-[#ffffff] opacity-40 hover:opacity-100 hover:bg-[#20201f] transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="shutter_speed">shutter_speed</span>
+<span class="font-headline text-sm uppercase tracking-widest">Rendering</span>
+</a>
+<!-- Benachrichtigungen Tab -->
+<a class="group flex items-center px-6 py-4 text-[#ffffff] opacity-40 hover:opacity-100 hover:bg-[#20201f] transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="notifications">notifications</span>
+<span class="font-headline text-sm uppercase tracking-widest">Mitteilungen</span>
+</a>
+</nav>
+<!-- Profil / Footer Sektion -->
+<div class="p-6 border-t border-[#484847]/10 bg-[#0e0e0e]/30">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-container">
+<img alt="User Avatar" data-alt="minimalist 3D avatar of a digital artist with neon highlights and sleek dark clothing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTFW1j09-pLUT9x-wRkEtYoBWrappFcqf_aO0fPJlJ07YgMCh0kGPlr-CPsjAWbmMs4fPZ6VGVl5s1QFwFYbD8ikwmPT3lH8SfKjHsE4Qo0dvX6weCtVrqXH5oncFu34Rhl0_uJ8U7ENVjaWu2KX6SQK6ZlCIjcpz0Vs3SUh8WFqXrHzIGGQMwmcQGK9yLwhMCdKJeGlHA7Zu0cRn4ttUgB7AlMlidMTYeVgaqAzegeZGyOjY2T5YQGUOQnBukQXtoFNzvXPgJhLnE"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Architect_01</span>
+<span class="text-[9px] text-on-surface-variant uppercase tracking-tighter">Pro-Tarif</span>
+</div>
+</div>
+<div class="space-y-4">
+<a class="flex items-center text-[#ffffff] opacity-40 hover:opacity-100 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined text-lg mr-3" data-icon="menu_book">menu_book</span>
+<span class="font-headline text-[11px] uppercase tracking-widest">Dokumentation</span>
+</a>
+<a class="flex items-center text-[#ffffff] opacity-40 hover:opacity-100 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined text-lg mr-3" data-icon="support_agent">support_agent</span>
+<span class="font-headline text-[11px] uppercase tracking-widest">Hilfe</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Hauptinhalt -->
+<main class="flex-1 h-screen overflow-y-auto bg-surface relative">
+<!-- Obere Leiste -->
+<div class="sticky top-0 z-10 w-full h-16 bg-surface/80 backdrop-blur-md px-12 flex justify-between items-center border-b border-white/5">
+<h2 class="font-headline text-xl font-bold tracking-tighter text-[#b6a0ff] uppercase">Editor-Einstellungen</h2>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="help">help</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+<div class="max-w-4xl px-12 py-16 space-y-24">
+<!-- Sektion: Design -->
+<section class="space-y-10">
+<div class="flex items-baseline gap-4">
+<span class="font-label text-[10px] text-primary uppercase tracking-[0.3em] font-bold">01</span>
+<h3 class="font-headline text-3xl font-light tracking-tight">Umgebungs-Design</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Obsidian Flux (Aktiv) -->
+<div class="relative group cursor-pointer border-2 border-primary bg-surface-container-high p-6 rounded-lg transition-all">
+<div class="absolute top-4 right-4">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-full h-24 mb-4 rounded bg-gradient-to-br from-[#0e0e0e] via-[#20201f] to-[#b6a0ff]/20 border border-white/5" data-alt="dark interface mockup with glowing purple accents and sharp geometric shapes"></div>
+<p class="font-headline text-sm font-bold uppercase tracking-wider text-on-surface">Obsidian Flux</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Tiefe Leere mit Neon-Präzision.</p>
+</div>
+<!-- Solarized -->
+<div class="relative group cursor-pointer bg-surface-container-low hover:bg-surface-container-high p-6 rounded-lg transition-all border border-transparent hover:border-white/10">
+<div class="w-full h-24 mb-4 rounded bg-gradient-to-br from-[#002b36] via-[#073642] to-[#b58900]/20 border border-white/5" data-alt="teal and yellow interface mockup with warm organic tones and high legibility"></div>
+<p class="font-headline text-sm font-bold uppercase tracking-wider text-on-surface-variant group-hover:text-on-surface">Solarized</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Klassischer technischer Kontrast.</p>
+</div>
+<!-- Cyberpunk -->
+<div class="relative group cursor-pointer bg-surface-container-low hover:bg-surface-container-high p-6 rounded-lg transition-all border border-transparent hover:border-white/10">
+<div class="w-full h-24 mb-4 rounded bg-gradient-to-br from-[#2b213a] via-[#1a1a1a] to-[#00e3fd]/20 border border-white/5" data-alt="retro-futuristic interface with magenta and cyan glows on a dark grey canvas"></div>
+<p class="font-headline text-sm font-bold uppercase tracking-wider text-on-surface-variant group-hover:text-on-surface">Cyberpunk</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Hochspannungs-Digital-Noir.</p>
+</div>
+</div>
+</section>
+<!-- Sektion: Visualizer -->
+<section class="space-y-10">
+<div class="flex items-baseline gap-4">
+<span class="font-label text-[10px] text-secondary uppercase tracking-[0.3em] font-bold">02</span>
+<h3 class="font-headline text-3xl font-light tracking-tight">Visualisierungs-Tools</h3>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden border border-white/5">
+<div class="divide-y divide-white/5">
+<!-- Antialiasing -->
+<div class="flex items-center justify-between p-8 hover:bg-surface-bright/30 transition-colors">
+<div class="space-y-1">
+<label class="font-headline text-base font-medium tracking-wide">Kantenglättung (Anti-aliasing)</label>
+<p class="font-body text-sm text-on-surface-variant">Glatte Kanten bei komplexen Shader-Geometrien.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary p-1 transition-colors duration-200">
+<span class="translate-x-5 inline-block h-4 w-4 transform rounded-full bg-on-primary ring-0 transition duration-200"></span>
+</button>
+</div>
+<!-- Show FPS -->
+<div class="flex items-center justify-between p-8 hover:bg-surface-bright/30 transition-colors">
+<div class="space-y-1">
+<label class="font-headline text-base font-medium tracking-wide">FPS anzeigen</label>
+<p class="font-body text-sm text-on-surface-variant">Echtzeit-Leistungsdaten einblenden.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-surface-container-highest border border-outline-variant p-1 transition-colors duration-200">
+<span class="translate-x-0 inline-block h-4 w-4 transform rounded-full bg-outline transition duration-200"></span>
+</button>
+</div>
+<!-- Grid Overlay -->
+<div class="flex items-center justify-between p-8 hover:bg-surface-bright/30 transition-colors">
+<div class="space-y-1">
+<label class="font-headline text-base font-medium tracking-wide">Raster-Overlay</label>
+<p class="font-body text-sm text-on-surface-variant">Koordinatensystem zur räumlichen Orientierung anzeigen.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary p-1 transition-colors duration-200">
+<span class="translate-x-5 inline-block h-4 w-4 transform rounded-full bg-on-primary ring-0 transition duration-200"></span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Sektion: Code Editor -->
+<section class="space-y-10">
+<div class="flex items-baseline gap-4">
+<span class="font-label text-[10px] text-primary uppercase tracking-[0.3em] font-bold">03</span>
+<h3 class="font-headline text-3xl font-light tracking-tight">Code-Editor</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Font Size Slider -->
+<div class="space-y-6">
+<div class="flex justify-between items-center">
+<label class="font-headline text-sm font-bold uppercase tracking-widest text-on-surface-variant">Schriftgröße</label>
+<span class="font-mono text-primary text-sm">14px</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" max="24" min="10" type="range" value="14"/>
+<div class="flex justify-between text-[10px] text-outline uppercase font-label">
+<span>Klein</span>
+<span>Standard</span>
+<span>Groß</span>
+</div>
+</div>
+<!-- Tab Size Dropdown -->
+<div class="space-y-6">
+<label class="font-headline text-sm font-bold uppercase tracking-widest text-on-surface-variant">Tab-Breite</label>
+<div class="relative">
+<select class="w-full bg-surface-container-highest border-none text-on-surface text-sm p-4 rounded-md focus:ring-1 focus:ring-primary/40 appearance-none font-body">
+<option>2 Leerzeichen</option>
+<option selected="">4 Leerzeichen</option>
+<option>8 Leerzeichen</option>
+<option>Tabs</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Aktions-Buttons Footer -->
+<footer class="pt-12 flex items-center justify-end gap-6 pb-20">
+<button class="px-8 py-3 font-headline text-xs font-bold uppercase tracking-[0.2em] text-secondary border border-[#484847]/40 hover:border-secondary hover:bg-secondary/5 transition-all duration-300 rounded-md">
+                Standard wiederherstellen
+            </button>
+<button class="px-10 py-3 font-headline text-xs font-bold uppercase tracking-[0.2em] text-on-primary bg-gradient-to-r from-primary to-primary-container shadow-[0_0_20px_rgba(182,160,255,0.3)] hover:shadow-[0_0_30px_rgba(182,160,255,0.5)] active:scale-95 transition-all duration-300 rounded-md">
+                Änderungen speichern
+            </button>
+</footer>
+</div>
+<!-- Dekoratives Hintergrundelement -->
+<div class="fixed bottom-0 right-0 -z-10 opacity-10 pointer-events-none translate-x-1/4 translate-y-1/4">
+<svg fill="none" height="600" viewbox="0 0 600 600" width="600" xmlns="http://www.w3.org/2000/svg">
+<circle cx="300" cy="300" r="299.5" stroke="#b6a0ff" stroke-dasharray="8 8"></circle>
+<circle cx="300" cy="300" r="199.5" stroke="#00e3fd" stroke-dasharray="4 4"></circle>
+<path d="M300 0V600M0 300H600" stroke="#484847" stroke-width="0.5"></path>
+</svg>
+</div>
+</main>
+</body></html>

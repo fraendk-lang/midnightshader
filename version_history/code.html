@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#26e6ff",
+              "primary-fixed-dim": "#9c7eff",
+              "on-secondary-fixed": "#003a42",
+              "on-secondary": "#004d57",
+              "error-dim": "#d73357",
+              "on-primary-fixed-variant": "#32008a",
+              "on-tertiary": "#48001c",
+              "on-primary-container": "#280072",
+              "on-tertiary-container": "#100003",
+              "surface-container-low": "#131313",
+              "surface": "#0e0e0e",
+              "on-primary-fixed": "#000000",
+              "primary-fixed": "#a98fff",
+              "error": "#ff6e84",
+              "surface-tint": "#b6a0ff",
+              "primary": "#b6a0ff",
+              "tertiary-fixed": "#ff8fa9",
+              "tertiary": "#ff6c95",
+              "secondary": "#00e3fd",
+              "inverse-primary": "#6834eb",
+              "tertiary-dim": "#ff6c95",
+              "surface-bright": "#2c2c2c",
+              "inverse-surface": "#fcf9f8",
+              "on-secondary-fixed-variant": "#005964",
+              "on-secondary-container": "#e8fbff",
+              "on-primary": "#340090",
+              "inverse-on-surface": "#565555",
+              "surface-container-highest": "#262626",
+              "secondary-fixed-dim": "#00d7f0",
+              "on-error-container": "#ffb2b9",
+              "error-container": "#a70138",
+              "surface-container-lowest": "#000000",
+              "on-background": "#ffffff",
+              "surface-dim": "#0e0e0e",
+              "on-surface": "#ffffff",
+              "on-error": "#490013",
+              "secondary-container": "#006875",
+              "surface-container-high": "#20201f",
+              "primary-dim": "#7e51ff",
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#770033",
+              "outline-variant": "#484847",
+              "background": "#0e0e0e",
+              "tertiary-fixed-dim": "#ff769b",
+              "primary-container": "#a98fff",
+              "tertiary-container": "#fd3e80",
+              "on-tertiary-fixed": "#380014",
+              "secondary-dim": "#00d4ec",
+              "outline": "#767575",
+              "surface-variant": "#262626",
+              "on-surface-variant": "#adaaaa"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --ma-surface: #0e0e0e;
+            --ma-surface-low: #131313;
+            --ma-surface-high: #20201f;
+            --ma-surface-highest: #262626;
+            --ma-primary: #b6a0ff;
+            --ma-secondary: #00e3fd;
+            --ma-ghost-border: rgba(72, 72, 71, 0.15);
+        }
+        .midnight-architect .h-px {
+            display: none;
+        }
+        .midnight-architect [class*="border-"] {
+            border-color: var(--ma-ghost-border) !important;
+        }
+        .midnight-architect .divide-y > :not([hidden]) ~ :not([hidden]) {
+            border-top-width: 0 !important;
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+        }
+        .midnight-architect .glass-panel {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 38px rgba(255, 255, 255, 0.06);
+        }
+        .midnight-architect h1,
+        .midnight-architect h2,
+        .midnight-architect h3,
+        .midnight-architect h4,
+        .midnight-architect .font-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        .midnight-architect p,
+        .midnight-architect li,
+        .midnight-architect input,
+        .midnight-architect select,
+        .midnight-architect textarea,
+        .midnight-architect .font-body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .midnight-architect code,
+        .midnight-architect pre,
+        .midnight-architect .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+        .midnight-architect main > section + section {
+            margin-top: 3.5rem;
+        }
+                .midnight-architect button {
+            transition: background-color 180ms ease-out, color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+        }
+        .midnight-architect button:not(.rounded-full) {
+            border-radius: 0.375rem;
+        }
+        .midnight-architect button[class*="bg-gradient"] {
+            box-shadow: 0 0 20px rgba(182, 160, 255, 0.28);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]) {
+            background: transparent;
+            border: 1px solid var(--ma-ghost-border);
+        }
+        .midnight-architect button[class*="text-secondary"]:not([class*="bg-"]):hover {
+            border-color: rgba(0, 227, 253, 0.4);
+            background: rgba(0, 227, 253, 0.06);
+        }
+        .midnight-architect [class*="rounded-full"][class*="text-[10px]"],
+        .midnight-architect [class*="rounded-full"][class*="text-xs"] {
+            border-radius: 9999px;
+        }
+        .midnight-architect [class*="bg-surface-container-low"]:hover,
+        .midnight-architect [class*="bg-surface-container-high"]:hover {
+            background-color: #2c2c2c;
+        }
+        .midnight-architect [role="tooltip"],
+        .midnight-architect .tooltip {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--ma-ghost-border);
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+.midnight-architect input:focus,
+        .midnight-architect select:focus,
+        .midnight-architect textarea:focus {
+            border-color: rgba(182, 160, 255, 0.4) !important;
+            box-shadow: 0 0 0 1px rgba(182, 160, 255, 0.4), 0 0 18px rgba(182, 160, 255, 0.2);
+            outline: none;
+        }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #0e0e0e;
+        color: #ffffff;
+        font-family: 'Manrope', sans-serif;
+        overflow: hidden;
+      }
+      .node-canvas {
+        background-image: 
+          radial-gradient(circle at 2px 2px, #20201f 1px, transparent 0);
+        background-size: 24px 24px;
+      }
+      .glass-panel {
+        background: rgba(38, 38, 38, 0.7);
+        backdrop-filter: blur(16px);
+      }
+    </style>
+</head>
+<body class="midnight-architect dark selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0e0e0e] flex justify-between items-center w-full px-6 py-3 h-14 border-b border-outline-variant/10">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#b6a0ff] font-headline">MidnightShader</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-headline text-sm tracking-tight text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">File</a>
+<a class="font-headline text-sm tracking-tight text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">Edit</a>
+<a class="font-headline text-sm tracking-tight text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">View</a>
+<a class="font-headline text-sm tracking-tight text-gray-400 hover:text-[#00e3fd] transition-colors" href="#">Assets</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-1 text-sm font-headline tracking-tight text-gray-400 hover:bg-[#20201f] hover:text-[#00e3fd] transition-colors rounded-md">Save</button>
+<button class="px-4 py-1 text-sm font-headline font-bold tracking-tight bg-primary text-on-primary rounded-md active:scale-95 transition-transform">Export</button>
+</div>
+</header>
+<!-- SideNavBar (History Active) -->
+<aside class="fixed left-0 top-14 bottom-0 flex flex-col items-center py-4 space-y-2 bg-[#131313] w-20 z-40">
+<div class="flex flex-col items-center justify-center text-gray-500 w-full py-4 hover:text-[#00e3fd] hover:bg-[#262626] transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1">hub</span>
+<span class="font-headline text-[10px] uppercase tracking-widest">Nodes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-500 w-full py-4 hover:text-[#00e3fd] hover:bg-[#262626] transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1">tune</span>
+<span class="font-headline text-[10px] uppercase tracking-widest">Parameters</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-500 w-full py-4 hover:text-[#00e3fd] hover:bg-[#262626] transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1">texture</span>
+<span class="font-headline text-[10px] uppercase tracking-widest">Textures</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-500 w-full py-4 hover:text-[#00e3fd] hover:bg-[#262626] transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1">layers</span>
+<span class="font-headline text-[10px] uppercase tracking-widest">Layers</span>
+</div>
+<!-- ACTIVE TAB -->
+<div class="flex flex-col items-center justify-center bg-[#20201f] text-[#b6a0ff] border-r-2 border-[#b6a0ff] w-full py-4 cursor-default">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-headline text-[10px] uppercase tracking-widest">History</span>
+</div>
+</aside>
+<!-- Main Workspace (Node Canvas) -->
+<main class="fixed inset-0 left-20 top-14 right-80 node-canvas bg-[#0e0e0e]">
+<!-- Representative Node Layout as Background -->
+<div class="absolute inset-0 p-12 pointer-events-none opacity-40">
+<div class="flex gap-16 items-center h-full">
+<div class="w-48 h-64 bg-surface-container-low rounded-lg border border-outline-variant/20 p-4">
+<div class="h-4 w-12 bg-primary/20 rounded mb-4"></div>
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-container-high rounded"></div>
+<div class="h-2 w-full bg-surface-container-high rounded"></div>
+<div class="h-2 w-3/4 bg-surface-container-high rounded"></div>
+</div>
+</div>
+<div class="w-64 h-80 bg-surface-container-low rounded-lg border border-outline-variant/20 p-4 relative">
+<div class="h-4 w-20 bg-secondary/20 rounded mb-4"></div>
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-container-high rounded"></div>
+<div class="h-2 w-full bg-surface-container-high rounded"></div>
+<div class="h-2 w-full bg-surface-container-high rounded"></div>
+</div>
+<!-- Connection lines placeholder -->
+<div class="absolute -left-16 top-1/2 w-16 h-px bg-primary/30"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Version History Sidebar -->
+<aside class="fixed right-0 top-14 bottom-0 w-80 bg-surface-container-low z-40 flex flex-col">
+<!-- Header -->
+<div class="px-6 py-6 border-b border-outline-variant/10">
+<h2 class="font-headline text-xl font-bold text-on-surface tracking-tight">Version History</h2>
+<p class="font-body text-xs text-on-surface-variant mt-1">Project Alpha — v1.0.4</p>
+</div>
+<!-- Scrollable History List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-2 py-4 space-y-4">
+<!-- Current State -->
+<div class="mx-2 p-4 bg-surface-container-highest rounded-xl border border-primary/20">
+<div class="flex items-center justify-between mb-2">
+<span class="flex items-center gap-2 text-primary font-headline text-[10px] uppercase tracking-widest font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                        Current Draft
+                    </span>
+<span class="font-mono text-[10px] text-on-surface-variant">Unsaved</span>
+</div>
+<h3 class="font-headline text-sm font-semibold mb-1">Active Session</h3>
+<p class="font-body text-xs text-on-surface-variant mb-4">Editing Noise_Texture_02 and Roughness maps...</p>
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary/10 text-primary text-[11px] font-headline font-bold hover:bg-primary/20 transition-colors uppercase tracking-wider">Save Milestone</button>
+</div>
+</div>
+<div class="px-4 py-2">
+<span class="font-headline text-[10px] uppercase tracking-[0.2em] text-outline">Previous Milestones</span>
+</div>
+<!-- History Item 1 -->
+<div class="group mx-2 p-4 hover:bg-surface-container-high rounded-xl transition-all border border-transparent hover:border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center">
+<img alt="James D." class="w-full h-full object-cover" data-alt="Professional studio headshot of a creative designer with neutral background and soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqsaq0AuD2MinL0gX1egAYel4L65aYbMr1uTXDhglqXyJ-N4Ze7RtXy6OWW8CtfJKPKyejB4Yuk7_aL838Hh8kaV106hg9d5Ar5HK74Q7YXb2HyjzIj_bvybwfBNj_iNuJ00sWxxk64h9r4F0JKtdjfzNXnf3zwqQeWZ2tA_XkWroGY8H6jzMKgdPWjpw57ux-PkkpCU3D1WHspBaalwWnyDKl2_iAJ_92AQUaVv9aOWr0RBMyCCT6FhX_Y3ebzpqS0t_3B532OC-q"/>
+</div>
+<span class="font-headline text-xs font-medium text-on-surface">James D.</span>
+</div>
+<span class="font-mono text-[10px] text-outline">2h ago</span>
+</div>
+<h3 class="font-headline text-sm font-semibold mb-1 group-hover:text-secondary transition-colors">Adjusted PBR roughness</h3>
+<p class="font-body text-xs text-on-surface-variant mb-4 leading-relaxed">Tweaked the metallic workflow for better specular response in dark environments.</p>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-secondary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Compare</button>
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-primary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Restore</button>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="group mx-2 p-4 hover:bg-surface-container-high rounded-xl transition-all border border-transparent hover:border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-outline">person</span>
+</div>
+<span class="font-headline text-xs font-medium text-on-surface">System</span>
+</div>
+<span class="font-mono text-[10px] text-outline">5h ago</span>
+</div>
+<h3 class="font-headline text-sm font-semibold mb-1 group-hover:text-secondary transition-colors">Fixed noise tiling</h3>
+<p class="font-body text-xs text-on-surface-variant mb-4 leading-relaxed">Automated patch for Perlin noise seams at high frequency scales.</p>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-secondary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Compare</button>
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-primary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Restore</button>
+</div>
+</div>
+<!-- History Item 3 -->
+<div class="group mx-2 p-4 hover:bg-surface-container-high rounded-xl transition-all border border-transparent hover:border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center">
+<img alt="Elena S." class="w-full h-full object-cover" data-alt="Portrait of a female technical artist with a modern haircut, warm ambient office lighting in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN6tj_scaawcHb48uRYRzfTs23TZVBMehjFUUYYuOOSwNmHHBpugDTFSURyKgnCNS0Bwx4-k6qKauEXzKbqAl87ovQVa127mATg7sy45Si97FcP5O3q8uFNCeTh483WRx7s7lIKLxzgS6p1C53E1tmcp6ncD4ndgzUDbaX79mXMN4vIdy3Nf0Ly97sRB_vojWUsF69Afa8cRT3o76I7vNRPpGpvz3208MrmddgzjMdWt1dJfbouE-uQBwnnwu0yvVhZeM_8q0UXV5d"/>
+</div>
+<span class="font-headline text-xs font-medium text-on-surface">Elena S.</span>
+</div>
+<span class="font-mono text-[10px] text-outline">Yesterday</span>
+</div>
+<h3 class="font-headline text-sm font-semibold mb-1 group-hover:text-secondary transition-colors">Initial Node Cluster</h3>
+<p class="font-body text-xs text-on-surface-variant mb-4 leading-relaxed">Baseline for the procedural terrain shader. Added heightmap inputs.</p>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-secondary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Compare</button>
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-primary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Restore</button>
+</div>
+</div>
+<!-- History Item 4 -->
+<div class="group mx-2 p-4 hover:bg-surface-container-high rounded-xl transition-all border border-transparent hover:border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-outline">person</span>
+</div>
+<span class="font-headline text-xs font-medium text-on-surface">James D.</span>
+</div>
+<span class="font-mono text-[10px] text-outline">2 days ago</span>
+</div>
+<h3 class="font-headline text-sm font-semibold mb-1 group-hover:text-secondary transition-colors">Project Created</h3>
+<p class="font-body text-xs text-on-surface-variant mb-4 leading-relaxed">Initialization of MidnightShader project workspace.</p>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-secondary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Compare</button>
+<button class="flex-1 py-1.5 rounded bg-surface-container-highest text-primary text-[10px] font-headline font-bold hover:text-white transition-colors border border-outline-variant/20 uppercase tracking-widest">Restore</button>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-outline-variant/10 bg-surface/50 backdrop-blur-sm">
+<button class="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-outline-variant/20 hover:bg-surface-container-highest transition-colors font-headline text-xs font-bold uppercase tracking-widest text-on-surface">
+<span class="material-symbols-outlined text-sm">settings_backup_restore</span>
+                View Full Timeline
+            </button>
+</div>
+</aside>
+<!-- Floating UI Helper -->
+<div class="fixed bottom-8 left-28 glass-panel px-4 py-2 rounded-full border border-outline-variant/20 flex items-center gap-4 z-50">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-mono text-[10px] text-on-surface/70">SYNCED TO CLOUD</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary">memory</span>
+<span class="font-mono text-[10px] text-on-surface/70">MEM: 2.4GB</span>
+</div>
+</div>
+</body></html>
